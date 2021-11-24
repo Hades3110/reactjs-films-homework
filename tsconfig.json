@@ -16,5 +16,5 @@
       "forceConsistentCasingInFileNames": true,
       "resolveJsonModule": true
     },
-    "include": ["src/**/*", "src/components/header/search/declaration.d.ts"]
+    "include": ["src/**/*", "src/components/search/declaration.d.ts"]
 }
