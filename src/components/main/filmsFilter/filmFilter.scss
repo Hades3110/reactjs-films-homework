@@ -1,0 +1,61 @@
+.filmFilter{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 4%;
+    border-bottom: 1px solid #5db9e5;
+    &__filter{
+        width: 80%;
+        &__btns{
+            height: 100%;
+            margin-right: 2em;
+            padding-bottom: 0.5em;
+            border:none;
+            background: none;
+            color: #5db9e5;
+            font-size: 20px;
+        }
+    }
+    &__arrange{
+        display: flex;
+        align-items: flex-start;
+        button{
+            border:none;
+            background: none;
+            
+        }
+        &__twoColumns{
+            display: flex;
+            flex-wrap: wrap;
+            width: 2rem;
+            &__el{
+                width: 0.7rem;
+                height: 0.7rem;
+                margin: 0 0.06rem 0.18rem;
+                border-radius: 2px;
+                background-color: #5db9e5;
+            }
+        }
+        &__oneColumn{
+            &__el{
+                width: 1.7rem;
+                height: 0.7rem;
+                margin-bottom: 0.17rem;
+                border-radius: 2px;
+                background-color: #DEDFE0;
+            }
+        }
+    }
+}
+#active{
+    border-bottom: 3px solid #5db9e5;
+    font-weight: bold;
+}
+// .filmList{
+//     grid-template-columns: repeat(4 , 1fr);
+//     grid-gap: 2em;
+// }
+// .filmList{
+//     grid-template-columns: 1fr;
+//     grid-gap: 2em;
+// }

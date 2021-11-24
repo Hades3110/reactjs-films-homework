@@ -1,0 +1,14 @@
+.footer{
+    background-color: white;
+    padding: 1em;
+    &__name{
+        margin: 0.5em;
+        color: #5db9e5;
+        text-align: center;
+        font-size: 30px;
+    }
+    &__info{
+        color: #E4E4E5;
+        text-align: center;
+    }
+}
