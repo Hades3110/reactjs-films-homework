@@ -7,7 +7,6 @@ header {
     display: flex;
     align-items: flex-end;
     background-size: cover;
-    // background-color: black;
 }
 .infoAndRating {
     width: 90%;
@@ -17,6 +16,7 @@ header {
     flex-direction: column;
     h1 {
         font-size: 40px;
+        text-shadow: 0 0 5px black;
     }
     &__moreInfo {
         width: 100%;
@@ -29,6 +29,7 @@ header {
             flex-wrap: wrap;
             list-style: none;
             justify-content: space-between;
+            text-shadow: 0 0 5px black;
             li{
                 margin-right: 1em;
             }
@@ -48,12 +49,14 @@ header {
             &__stars {
                 font-size: 26px;
                 padding: 0.5em;
+                text-shadow: 0 0 1px black;
             }
             &__num {
                 padding: 1px 8px;
                 border: 1px solid #5db9e5;
                 border-radius: 10%;
                 margin-top: 0.5em;
+                text-shadow: 0 0 1px black;
             }
         }
         &__btns {
@@ -67,6 +70,7 @@ header {
                 color: #efece9;
                 font-size: 20px;
                 border-radius: 5px;
+                cursor: pointer;
             }
             &__watch {
                 background-color: #5db9e5;
@@ -75,6 +79,7 @@ header {
             &__view {
                 background: none;
                 border: 1px solid #efece9;
+                background:linear-gradient(rgb(105, 105, 105),rgba(255, 255, 255, 0));
             }
         }
     }

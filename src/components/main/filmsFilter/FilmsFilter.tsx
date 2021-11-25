@@ -1,7 +1,10 @@
-import React from "react"
+import { useState } from "react"
 import './filmFilter.scss'
 
-const FilmsFilter = () => {
+const FilmsFilter = ({ sortTypeChange, sortType }: any) => {
+
+    const [active, setActive] = useState(sortType)
+
     return (
         <div className="filmFilter">
             <div className="filmFilter__filter">
@@ -12,13 +15,21 @@ const FilmsFilter = () => {
             </div>
 
             <div className="filmFilter__arrange">
-                <button className="filmFilter__arrange__twoColumns">
-                    <div className="filmFilter__arrange__twoColumns__el"></div>
-                    <div className="filmFilter__arrange__twoColumns__el"></div>
-                    <div className="filmFilter__arrange__twoColumns__el"></div>
-                    <div className="filmFilter__arrange__twoColumns__el"></div>
+                <button
+                    className="filmFilter__arrange__row"
+                    id={sortType ? 'activeBtn' : ''}
+                    onClick={() => sortTypeChange(1)}
+                >
+                    <div className="filmFilter__arrange__row__el"></div>
+                    <div className="filmFilter__arrange__row__el"></div>
+                    <div className="filmFilter__arrange__row__el"></div>
+                    <div className="filmFilter__arrange__row__el"></div>
                 </button>
-                <button className="filmFilter__arrange__oneColumn">
+                <button
+                    className="filmFilter__arrange__oneColumn"
+                    id={sortType ? '' : 'activeBtn'}
+                    onClick={() => sortTypeChange(0)}
+                >
                     <div className="filmFilter__arrange__oneColumn__el"></div>
                     <div className="filmFilter__arrange__oneColumn__el"></div>
                 </button>

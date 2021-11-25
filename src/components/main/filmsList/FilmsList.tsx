@@ -1,27 +1,42 @@
-import React, { useState, useEffect } from "react"
-import Film from "./film/Film"
+import { useState, useEffect } from "react"
+import FilmRow from "./filmRow/FilmRow"
+import FilmColumn from "./filmColumn/FilmColumn"
 import FilmService from "../../../services/filmService"
 import { FilmInterface } from './types'
 import './filmList.scss'
 
-const FilmsList: React.FC = () => {
+const FilmsList = ({ sortType }: any) => {
+
     const filmService = new FilmService()
+
     const [filmArr, setFilmArr] = useState([])
+
     useEffect(() => {
         filmService.getFilmList()
             .then(res => setFilmArr(res))
     }, [])
 
     return (
-        <div className="filmList">
+        <div className={sortType ? 'filmListRow' : 'filmListColumn'}>
             {
                 filmArr.map((el: FilmInterface) => {
+                    if (sortType) {
+                        return (
+                            <FilmRow
+                                key={el.id}
+                                title={el.title}
+                                image={el.poster_path}
+                                rate={el.vote_average}
+                            />
+                        )
+                    }
                     return (
-                        <Film
+                        <FilmColumn
                             key={el.id}
                             title={el.title}
                             image={el.poster_path}
                             rate={el.vote_average}
+                            overview={el.overview}
                         />
                     )
                 })

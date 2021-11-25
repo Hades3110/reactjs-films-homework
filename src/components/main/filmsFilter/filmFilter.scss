@@ -24,7 +24,7 @@
             background: none;
             
         }
-        &__twoColumns{
+        &__row{
             display: flex;
             flex-wrap: wrap;
             width: 2rem;
@@ -33,7 +33,7 @@
                 height: 0.7rem;
                 margin: 0 0.06rem 0.18rem;
                 border-radius: 2px;
-                background-color: #5db9e5;
+                background-color: #DEDFE0;
             }
         }
         &__oneColumn{
@@ -51,11 +51,6 @@
     border-bottom: 3px solid #5db9e5;
     font-weight: bold;
 }
-// .filmList{
-//     grid-template-columns: repeat(4 , 1fr);
-//     grid-gap: 2em;
-// }
-// .filmList{
-//     grid-template-columns: 1fr;
-//     grid-gap: 2em;
-// }
+#activeBtn div{
+    background-color:  #5db9e5;
+}

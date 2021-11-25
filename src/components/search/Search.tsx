@@ -1,4 +1,3 @@
-import React from 'react'
 import './search.scss'
 import imgSearch from '/public/assets/search.png'
 

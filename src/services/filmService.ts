@@ -20,7 +20,7 @@ class FilmService {
     }
 
     getHeadFilm = () => {
-        return this.getResource(`${this._apiBase}movie/588=${this._apiKey}`)
+        return this.getResource(`${this._apiBase}movie/561=${this._apiKey}`)
     }
 }
 
