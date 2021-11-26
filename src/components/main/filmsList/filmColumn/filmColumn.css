@@ -1,0 +1,83 @@
+.filmColumn {
+  -webkit-box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.15);
+          box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.15);
+  border-radius: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column wrap;
+          flex-flow: column wrap;
+  -ms-flex-line-pack: start;
+      align-content: flex-start;
+  height: 250px;
+}
+
+.filmColumn__image {
+  height: 250px;
+  -o-object-fit: contain;
+     object-fit: contain;
+  border-radius: 5px 0 0 5px;
+}
+
+.filmColumn__title {
+  width: 86%;
+  padding: 1.5em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-line-pack: justify;
+      align-content: space-between;
+}
+
+.filmColumn__title__name {
+  width: 80%;
+  font-size: 26px;
+  text-transform: uppercase;
+  font-weight: 300;
+}
+
+.filmColumn__title__genre {
+  color: #5db9e5;
+  font-size: 20px;
+}
+
+.filmColumn__title__rating {
+  color: #5db9e5;
+  font-size: 26px;
+  border: 1px solid #5db9e5;
+  border-radius: 5px;
+  padding: 0.1em 0.4em;
+}
+
+.filmColumn__title__overview {
+  width: 90%;
+  height: 100px;
+  font-weight: 300;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.filmColumn__title__overview span:first-child {
+  font-size: 20px;
+  padding: .5em 0;
+}
+
+.filmColumn__title__overview span:last-child {
+  color: #5db9e5;
+}
+/*# sourceMappingURL=filmColumn.css.map */
