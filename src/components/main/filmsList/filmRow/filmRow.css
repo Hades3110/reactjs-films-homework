@@ -1,0 +1,50 @@
+.filmRow {
+  -webkit-box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.15);
+          box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.15);
+  border-radius: 5px;
+}
+
+.filmRow__image {
+  width: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+  border-radius: 5px 5px 0 0;
+}
+
+.filmRow__title {
+  padding: 1.5em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-line-pack: justify;
+      align-content: space-between;
+}
+
+.filmRow__title__name {
+  width: 80%;
+  font-size: 18px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.filmRow__title__rating {
+  color: #5db9e5;
+  font-size: 18px;
+  border: 1px solid #5db9e5;
+  border-radius: 5px;
+  padding: 0.1em 0.4em;
+}
+
+.filmRow__title__genre {
+  color: #5db9e5;
+  margin-top: 0.5em;
+}
+/*# sourceMappingURL=filmRow.css.map */

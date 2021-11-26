@@ -1,13 +1,13 @@
 import './app.scss'
-import Header from '../header/Header'
+import MajorFilm from '../majorFilm/MajorFilm'
 import Main from '../main/Main'
 import Footer from '../footer/Footer'
-import Search from '../search/Search'
+import Header from '../header/Header'
 
 const App = () => {
         return <>
-                <Search />
                 <Header />
+                <MajorFilm />
                 <Main />
                 <Footer />
         </>
