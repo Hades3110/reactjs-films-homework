@@ -1,13 +1,12 @@
 import { useState, useEffect } from "react"
 import FilmRow from "./filmRow/FilmRow"
 import FilmColumn from "./filmColumn/FilmColumn"
-import { getFilmList } from "../../../services/filmService"
-import { FilmInterface } from './types'
+import { FilmInterface, getFilmList } from "../../../services/filmService"
 import './filmList.scss'
 
-const FilmsList = ({ sortType }: any) => {
+const FilmsList = ({ sortType }: { sortType: number }) => {
 
-    const [filmArr, setFilmArr] = useState([])
+    const [filmArr, setFilmArr] = useState<FilmInterface[]>([])
 
     useEffect(() => {
         getFilmList()

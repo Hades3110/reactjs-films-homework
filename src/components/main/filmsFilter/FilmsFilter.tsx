@@ -1,9 +1,7 @@
-import { useState } from "react"
 import './filmFilter.scss'
+import { SortTypeInterface } from './types'
 
-const FilmsFilter = ({ sortTypeChange, sortType }: any) => {
-
-    const [active, setActive] = useState(sortType)
+const FilmsFilter = ({ sortTypeChange, sortType }: SortTypeInterface) => {
 
     return (
         <div className="filmFilter">
@@ -20,18 +18,18 @@ const FilmsFilter = ({ sortTypeChange, sortType }: any) => {
                     id={sortType ? 'activeBtn' : ''}
                     onClick={() => sortTypeChange(1)}
                 >
-                    <div className="filmFilter__arrange__row__el"></div>
-                    <div className="filmFilter__arrange__row__el"></div>
-                    <div className="filmFilter__arrange__row__el"></div>
-                    <div className="filmFilter__arrange__row__el"></div>
+                    <div className="filmFilter__arrange__row__el" />
+                    <div className="filmFilter__arrange__row__el" />
+                    <div className="filmFilter__arrange__row__el" />
+                    <div className="filmFilter__arrange__row__el" />
                 </button>
                 <button
                     className="filmFilter__arrange__oneColumn"
                     id={sortType ? '' : 'activeBtn'}
                     onClick={() => sortTypeChange(0)}
                 >
-                    <div className="filmFilter__arrange__oneColumn__el"></div>
-                    <div className="filmFilter__arrange__oneColumn__el"></div>
+                    <div className="filmFilter__arrange__oneColumn__el" />
+                    <div className="filmFilter__arrange__oneColumn__el" />
                 </button>
             </div>
         </div>

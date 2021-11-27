@@ -8,7 +8,7 @@ const FilmRow = ({ title, image, rate }: FilmPropertyInterface) => {
             <img src={imageUrl} alt="" className="filmRow__image" />
             <div className="filmRow__title">
                 <span className="filmRow__title__name">{title}</span>
-                <span className="filmRow__title__rating">{rate}</span>
+                <span className="filmRow__title__rating">{(rate / 2 ).toFixed(1)}</span>
                 <span className="filmRow__title__genre">Action , Fantasy , Adventure</span>
             </div>
         </div>

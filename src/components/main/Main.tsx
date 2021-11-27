@@ -4,14 +4,12 @@ import FilmsList from "./filmsList/FilmsList"
 import './main.scss'
 
 const Main = () => {
-    const [sortType, setSortType] = useState(1);
+    const [sortType, setSortType] = useState(1)
 
     const sortTypeChange = (type: number) => {
-        if (type === 1) {
-            setSortType(() => 1)
-        } else setSortType(() => 0)
+      return type === 1 ? setSortType(1) : setSortType(0)
     }
-    console.log(sortType)
+
     return (
         <main className="main">
             <FilmsFilter sortTypeChange={sortTypeChange} sortType={sortType} />
@@ -22,4 +20,5 @@ const Main = () => {
         </main>
     )
 }
+
 export default Main
