@@ -50,6 +50,8 @@
                 font-size: 26px;
                 padding: 0.5em;
                 text-shadow: 0 0 1px black;
+                overflow: hidden;
+                white-space: nowrap;
             }
             &__num {
                 padding: 1px 8px;

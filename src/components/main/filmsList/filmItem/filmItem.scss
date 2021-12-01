@@ -1,0 +1,85 @@
+.filmItem{
+    box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.15);
+    border-radius: 5px;
+    &__image{
+        object-fit:contain;
+        border-radius: 5px 0 0 5px;
+    }
+    &__title{
+        padding: 1.5em;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        align-content: space-between;
+        &__name{
+            width: 80%;
+            text-transform: uppercase;
+        }
+        &__genre{
+            margin-top: .5em;
+            color: #5db9e5;
+            font-size:16px;
+
+        }
+        &__rating{
+            color: #5db9e5;
+            border: 1px solid #5db9e5;
+            border-radius: 5px;
+            padding: 0.1em 0.4em;
+        }
+    }
+}
+.column{
+    display: flex;
+    flex-flow: column wrap;
+    align-content: flex-start;
+    height: 250px;
+    .filmImage{
+        height: 250px;
+    }
+    .filmTitle{
+        width: 86%;
+    }
+    .filmName{
+        font-size:26px;
+        font-weight: 300;
+    }
+    .filmGenre{
+        font-size:20px;
+    }
+    .filmRating{
+        font-size: 26px;
+    }
+    .filmOverview{
+        width: 90%;
+        height: 100px;
+        font-weight: 300;
+        display: flex;
+        flex-direction: column;
+        span:first-child{
+            font-size: 20px;
+            padding: .5em 0;
+        }
+        span:last-child{
+            color: #5db9e5;
+        }
+    }
+}
+
+.row{
+    .filmImage{
+        width: 100%;
+    }
+    
+    .filmName{
+        font-size:18px;
+        font-weight: 500;
+    }
+    .filmRating{
+        font-size: 18px;
+    }
+    .filmGenre{
+        line-height: 1.5em;
+    }
+}

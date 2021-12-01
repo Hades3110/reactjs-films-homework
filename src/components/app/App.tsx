@@ -1,5 +1,5 @@
 import './app.scss'
-import MajorFilm from '../majorFilm/MajorFilm'
+import MainBanner from '../mainBanner/MainBanner'
 import Main from '../main/Main'
 import Footer from '../footer/Footer'
 import Header from '../header/Header'
@@ -7,7 +7,7 @@ import Header from '../header/Header'
 const App = () => {
         return <>
                 <Header />
-                <MajorFilm />
+                <MainBanner />
                 <Main />
                 <Footer />
         </>
