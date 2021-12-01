@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { FilmInfoInterface, GenreInterface, getHeadFilm } from '../../services/filmService'
+import StarRatings from 'react-star-ratings';
 import './mainBanner.scss'
-
-
 
 const MainBanner: React.FC = () => {
 
@@ -14,6 +13,7 @@ const MainBanner: React.FC = () => {
     }, [])
 
     const bgImage: string = filmInfo.backdrop_path
+    const vote = filmInfo.vote_average ? +(filmInfo.vote_average / 2).toFixed(1) : 0
 
     return (
         <div className="majorFilm" style={{
@@ -30,14 +30,14 @@ const MainBanner: React.FC = () => {
                 </div>
                 <div className="infoAndRating__ratingAndBtn">
                     <div className="infoAndRating__ratingAndBtn__rating">
-                        <span className="infoAndRating__ratingAndBtn__rating__stars">
-                            <i className="fas fa-star"></i>
-                            <i className="fas fa-star"></i>
-                            <i className="fas fa-star"></i>
-                            <i className="fas fa-star-half-alt"></i>
-                            <i className="far fa-star"></i>
-                        </span>
-                        <div className="infoAndRating__ratingAndBtn__rating__num">{filmInfo.vote_average ? (filmInfo.vote_average / 2).toFixed(1) : 0}</div>
+                        <StarRatings
+                            rating={vote}
+                            starRatedColor="#5db9e5"
+                            numberOfStars={Math.ceil(vote)}
+                            name='rating'
+                            starDimension={'26px'}
+                        />
+                        <div className="infoAndRating__ratingAndBtn__rating__num">{vote}</div>
                     </div>
                     <div className="infoAndRating__ratingAndBtn__btns">
                         <button className="infoAndRating__ratingAndBtn__btns__watch">Watch now</button>

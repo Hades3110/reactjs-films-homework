@@ -10,7 +10,7 @@ const FilmsList = ({ sortType }: { sortType: number }) => {
     const [listEnded, setListEnded] = useState<boolean>(false)
 
     const changeFilmCount = () => {
-        if (filmArr.length - filmCount < 12) {
+        if (filmArr.length - filmCount <= 12) {
             setFilmCount(12 + filmArr.length - filmCount)
             setListEnded(true)
         } else setFilmCount(filmCount + 12)
@@ -35,7 +35,7 @@ const FilmsList = ({ sortType }: { sortType: number }) => {
                                     image={el.poster_path}
                                     rate={el.vote_average}
                                     overview={el.overview}
-                                    filmGenre={el.genre_ids}
+                                    filmGenres={el.genre_ids}
                                 />
                             )
                         }

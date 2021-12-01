@@ -4,6 +4,6 @@ export interface FilmPropertyInterface {
     image: string
     rate: number
     overview: string
-    filmGenre: []
+    filmGenres: []
     sortType: number
 }

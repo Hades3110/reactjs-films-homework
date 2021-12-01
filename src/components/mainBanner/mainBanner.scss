@@ -46,18 +46,11 @@
             justify-content: space-between;
             align-items: center;
             color: #5db9e5;
-            &__stars {
-                font-size: 26px;
-                padding: 0.5em;
-                text-shadow: 0 0 1px black;
-                overflow: hidden;
-                white-space: nowrap;
-            }
             &__num {
                 padding: 1px 8px;
                 border: 1px solid #5db9e5;
                 border-radius: 10%;
-                margin-top: 0.5em;
+                margin-left: 1em;
                 text-shadow: 0 0 1px black;
             }
         }
@@ -81,7 +74,7 @@
             &__view {
                 background: none;
                 border: 1px solid #efece9;
-                background:linear-gradient(rgb(39, 39, 39),rgba(255, 255, 255, 0));
+                background: linear-gradient(rgb(39, 39, 39),rgba(255, 255, 255, 0));
             }
         }
     }
