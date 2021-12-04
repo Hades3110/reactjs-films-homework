@@ -1,11 +1,19 @@
 import { useState, useEffect } from "react"
 import FilmItem from "./filmItem/FilmItem"
-import { FilmInterface, getFilmList } from "../../../services/filmService"
+import {
+    FilmInterface,
+    getTrendingFilm,
+    getTopRated,
+    getComingSoon,
+    getGenres,
+    GenreInterface
+} from "../../../services/filmService"
 import './filmList.scss'
 
-const FilmsList = ({ sortType }: { sortType: number }) => {
+const FilmsList = ({ sortType, listCategories }: { sortType: number, listCategories: string }) => {
 
     const [filmArr, setFilmArr] = useState<FilmInterface[]>([])
+    const [genres, setGenres] = useState<GenreInterface[]>([])
     const [filmCount, setFilmCount] = useState<number>(12)
     const [listEnded, setListEnded] = useState<boolean>(false)
 
@@ -17,10 +25,32 @@ const FilmsList = ({ sortType }: { sortType: number }) => {
     }
 
     useEffect(() => {
-        getFilmList()
-            .then(res => setFilmArr(res.results))
-    }, [])
+        switch (listCategories) {
+            case 'trending':
+                getTrendingFilm()
+                    .then(res => setFilmArr(res.results))
+                setFilmCount(12)
+                setListEnded(false)
+                break
+            case 'topRated':
+                getTopRated()
+                    .then(res => setFilmArr(res.results))
+                setFilmCount(12)
+                setListEnded(false)
+                break
+            case 'comingSoon':
+                getComingSoon()
+                    .then(res => setFilmArr(res.results))
+                setFilmCount(12)
+                setListEnded(false)
+                break
+        }
+    }, [listCategories])
 
+    useEffect(() => {
+        getGenres()
+            .then(res => setGenres(res.genres))
+    }, [])
     return (
         <>
             <div className={sortType ? 'filmListRow' : 'filmListColumn'}>
@@ -36,6 +66,7 @@ const FilmsList = ({ sortType }: { sortType: number }) => {
                                     rate={el.vote_average}
                                     overview={el.overview}
                                     filmGenres={el.genre_ids}
+                                    genres={genres}
                                 />
                             )
                         }

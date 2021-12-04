@@ -16,11 +16,16 @@
             width: 80%;
             text-transform: uppercase;
         }
-        &__genre{
+        &__genres{
+            width: 100%;
             margin-top: .5em;
             color: #5db9e5;
             font-size:16px;
-
+            display: flex;
+            flex-wrap: wrap;
+            &__el{
+                padding-right: .5em;
+            }
         }
         &__rating{
             color: #5db9e5;
@@ -78,8 +83,5 @@
     }
     .filmRating{
         font-size: 18px;
-    }
-    .filmGenre{
-        line-height: 1.5em;
     }
 }

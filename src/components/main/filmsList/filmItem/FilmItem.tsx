@@ -1,49 +1,34 @@
-import { useState, useEffect } from "react"
-import { getGenres, GenreInterface } from "../../../../services/filmService"
 import { FilmPropertyInterface } from "./types"
 import './filmItem.scss'
+import { GenreInterface } from "../../../../services/filmService"
 
-const FilmItem = ({ title, image, rate, overview, filmGenres, sortType }: FilmPropertyInterface) => {
+const FilmItem = ({ title, image, rate, overview, filmGenres, sortType, genres }: FilmPropertyInterface) => {
 
-    const [genres, setGenres] = useState<GenreInterface[]>([])
-
-    useEffect(() => {
-        getGenres()
-            .then(res => setGenres(res.genres))
-    }, [])
-
-    const genreChoice = () => {
-        const result = [];
-        for (const genre of genres) {
-            for (const filmGenre of filmGenres) {
-                if (genre.id === filmGenre) {
-                    result.push(genre.name)
-                }
-            }
+    const genreName: GenreInterface[] = genres.filter((el: GenreInterface) => {
+        for (const filmGenre of filmGenres) {
+            if (el.id === filmGenre) return true
         }
-        return result.join(' ');
-    }
-
+    })
     const imageUrl = `https://image.tmdb.org/t/p/original/${image}`
+    const vote = rate ? +(rate / 2).toFixed(1) : 0
 
     return (
         <div className={sortType ? "filmItem row" : "filmItem column"}>
             <img src={imageUrl} alt="" className="filmColumn__image filmImage" />
             <div className="filmItem__title filmTitle">
                 <span className="filmItem__title__name filmName">{title}</span>
-                <span className="filmItem__title__rating filmRating">{rate ? +(rate / 2).toFixed(1) : 0}</span>
-                <span className="filmItem__title__genre filmGenre">{genreChoice()}</span>
-                {sortType ? null : <Overview overview={overview} />}
+                <span className="filmItem__title__rating filmRating">{vote}</span>
+                <div className="filmItem__title__genres filmGenre">
+                    {genreName.map((el: GenreInterface) => {
+                        return <span className="filmItem__title__genres__el" key={el.id}>{el.name}</span>
+                    })}
+                </div>
+                {sortType ? null : <div overview={overview} className="filmOverview">
+                    <span>Overview</span>
+                    <span>{overview}</span>
+                </div>
+                }
             </div>
-        </div>
-    )
-}
-
-const Overview = ({ overview }: { overview: string }) => {
-    return (
-        <div className="filmOverview">
-            <span>Overview</span>
-            <span>{overview}</span>
         </div>
     )
 }

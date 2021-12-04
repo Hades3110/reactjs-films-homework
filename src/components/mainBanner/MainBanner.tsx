@@ -33,7 +33,7 @@ const MainBanner: React.FC = () => {
                         <StarRatings
                             rating={vote}
                             starRatedColor="#5db9e5"
-                            numberOfStars={Math.ceil(vote)}
+                            numberOfStars={5}
                             name='rating'
                             starDimension={'26px'}
                         />
