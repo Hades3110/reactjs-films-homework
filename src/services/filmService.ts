@@ -52,6 +52,6 @@ export const getHeadFilm = () => {
     return getResource(`${process.env.API_BASE}movie/561=${process.env.API_KEY}`)
 }
 
-// export const getGenres = () => {
-//     return getResource(`${process.env.API_BASE}genre/movie/list${process.env.API_KEY}&language=en-US`)
-// }
+export const getGenres = () => {
+    return getResource(`${process.env.API_BASE}genre/movie/list${process.env.API_KEY}&language=en-US`)
+}
