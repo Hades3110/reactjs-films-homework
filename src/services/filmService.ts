@@ -36,22 +36,14 @@ const getResource = (url: string): Promise<FilmInfoInterface> => {
     })
 }
 
-export const getTrendingFilm = () => {
-    return getResource(`${process.env.API_BASE}movie/popular${process.env.API_KEY}`)
+export const getFilmlist = (categories: string, page: number) => {
+    return getResource(`${process.env.API_BASE}movie/${categories}${process.env.API_KEY}&language=en-US&page=${page}`)
 }
 
-export const getTopRated = () => {
-    return getResource(`${process.env.API_BASE}movie/top_rated${process.env.API_KEY}&language=en-US`)
-}
-
-export const getComingSoon = () => {
-    return getResource(`${process.env.API_BASE}movie/upcoming${process.env.API_KEY}&language=en-US`)
+export const getGenres = () => {
+    return getResource(`${process.env.API_BASE}genre/movie/list${process.env.API_KEY}`)
 }
 
 export const getHeadFilm = () => {
     return getResource(`${process.env.API_BASE}movie/561=${process.env.API_KEY}`)
 }
-
-// export const getGenres = () => {
-//     return getResource(`${process.env.API_BASE}genre/movie/list${process.env.API_KEY}&language=en-US`)
-// }

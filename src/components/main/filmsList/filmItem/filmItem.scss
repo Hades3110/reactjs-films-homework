@@ -6,7 +6,6 @@
         border-radius: 5px 0 0 5px;
     }
     &__title{
-        padding: 1.5em;
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
@@ -44,6 +43,7 @@
         height: 250px;
     }
     .filmTitle{
+        padding: 1.5em;
         width: 86%;
     }
     .filmName{
@@ -76,9 +76,10 @@
     .filmImage{
         width: 100%;
     }
-    
+    .filmTitle{
+        padding: 1em;
+    }
     .filmName{
-        font-size:18px;
         font-weight: 500;
     }
     .filmRating{

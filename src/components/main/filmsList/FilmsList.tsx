@@ -1,81 +1,62 @@
 import { useState, useEffect } from "react"
 import FilmItem from "./filmItem/FilmItem"
+import { useSelector, useDispatch } from "react-redux"
+import { changeFilmCategoriesAndCount } from "../../../redux/filmList/action"
 import {
     FilmInterface,
-    getTrendingFilm,
-    getTopRated,
-    getComingSoon,
+    getFilmlist,
     getGenres,
     GenreInterface
 } from "../../../services/filmService"
 import './filmList.scss'
 
-const FilmsList = ({ sortType, listCategories }: { sortType: number, listCategories: string }) => {
+const FilmsList = ({ sortType }: { sortType: number }) => {
 
     const [filmArr, setFilmArr] = useState<FilmInterface[]>([])
     const [genres, setGenres] = useState<GenreInterface[]>([])
-    const [filmCount, setFilmCount] = useState<number>(12)
-    const [listEnded, setListEnded] = useState<boolean>(false)
 
-    const changeFilmCount = () => {
-        if (filmArr.length - filmCount <= 12) {
-            setFilmCount(12 + filmArr.length - filmCount)
-            setListEnded(true)
-        } else setFilmCount(filmCount + 12)
-    }
+    const dispatch = useDispatch()
+    const pageCounter = useSelector((state: any) => state.pageCounter.count)
+    const categories = useSelector((state: any) => state.pageCounter.categories)
 
     useEffect(() => {
-        switch (listCategories) {
-            case 'trending':
-                getTrendingFilm()
-                    .then(res => setFilmArr(res.results))
-                setFilmCount(12)
-                setListEnded(false)
-                break
-            case 'topRated':
-                getTopRated()
-                    .then(res => setFilmArr(res.results))
-                setFilmCount(12)
-                setListEnded(false)
-                break
-            case 'comingSoon':
-                getComingSoon()
-                    .then(res => setFilmArr(res.results))
-                setFilmCount(12)
-                setListEnded(false)
-                break
+        if (pageCounter > 1) {
+            getFilmlist(categories, pageCounter)
+                .then(res => setFilmArr(() => ([...filmArr, ...res.results])))
+        } else {
+            getFilmlist(categories, pageCounter)
+                .then(res => setFilmArr(res.results))
         }
-    }, [listCategories])
+    }, [categories, pageCounter])
 
     useEffect(() => {
         getGenres()
             .then(res => setGenres(res.genres))
     }, [])
+
+
     return (
         <>
             <div className={sortType ? 'filmListRow' : 'filmListColumn'}>
                 {
-                    filmArr.map((el: FilmInterface, i: number) => {
-                        if (i < filmCount) {
-                            return (
-                                <FilmItem
-                                    sortType={sortType}
-                                    key={el.id}
-                                    title={el.title}
-                                    image={el.poster_path}
-                                    rate={el.vote_average}
-                                    overview={el.overview}
-                                    filmGenres={el.genre_ids}
-                                    genres={genres}
-                                />
-                            )
-                        }
+                    filmArr.map((el: FilmInterface) => {
+                        return (
+                            <FilmItem
+                                sortType={sortType}
+                                key={el.id}
+                                title={el.title}
+                                image={el.poster_path}
+                                rate={el.vote_average}
+                                overview={el.overview}
+                                filmGenres={el.genre_ids}
+                                genres={genres}
+                            />
+                        )
                     })
                 }
             </div>
             <div className="btn"
-                onClick={() => changeFilmCount()}
-                style={{ 'display': listEnded ? 'none' : 'block' }}>
+                onClick={() => dispatch(changeFilmCategoriesAndCount(pageCounter + 1, categories))}>
                 <button className="btn__more">Load More</button>
             </div>
         </>

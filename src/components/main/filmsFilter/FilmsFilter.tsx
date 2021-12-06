@@ -1,27 +1,42 @@
 import './filmFilter.scss'
 import { SortTypeInterface } from './types'
+import { useDispatch } from 'react-redux'
+import { changeFilmCategoriesAndCount } from '../../../redux/filmList/action'
+
 
 const FilmsFilter = ({ listCategories, changeListCategories, sortTypeChange, sortType }: SortTypeInterface) => {
 
+    const dispatch = useDispatch()
     return (
         <div className="filmFilter">
             <div className="filmFilter__filter">
                 <button
-                    className={listCategories === 'trending' ? 'filmFilter__filter__btns activeCategories' : 'filmFilter__filter__btns'}
-                    value='trending'
-                    onClick={(evt) => changeListCategories(evt.target.value)}>
+                    className={listCategories === 'popular' ? 'filmFilter__filter__btns activeCategories' : 'filmFilter__filter__btns'}
+                    value='popular'
+                    onClick={(e: any): void => {
+                        dispatch(changeFilmCategoriesAndCount(1, 'popular'))
+                    }
+                    }>
                     Trending
                 </button>
                 <button
-                    className={listCategories === 'topRated' ? 'filmFilter__filter__btns activeCategories' : 'filmFilter__filter__btns'}
-                    value='topRated'
-                    onClick={(evt) => changeListCategories(evt.target.value)}>
+                    className={listCategories === 'top_rated' ? 'filmFilter__filter__btns activeCategories' : 'filmFilter__filter__btns'}
+                    value='top_rated'
+                    onClick={(e: any): void => {
+                        // changeListCategories(e.target.value)
+                        dispatch(changeFilmCategoriesAndCount(1, 'top_rated'))
+                    }
+                    }>
                     Top Rated
                 </button>
                 <button
-                    className={listCategories === 'comingSoon' ? 'filmFilter__filter__btns activeCategories' : 'filmFilter__filter__btns'}
-                    value='comingSoon'
-                    onClick={(e: React.ChangeEvent<HTMLInputElement>) => changeListCategories(e.target.value)}>
+                    className={listCategories === 'upcoming' ? 'filmFilter__filter__btns activeCategories' : 'filmFilter__filter__btns'}
+                    value='upcoming'
+                    onClick={(e: any): void => {
+                        // changeListCategories(e.target.value)
+                        dispatch(changeFilmCategoriesAndCount(1, 'upcoming'))
+                    }
+                    }>
                     Coming Soon
                 </button>
                 {/* <button className="filmFilter__filter__btns">Genre</button> */}

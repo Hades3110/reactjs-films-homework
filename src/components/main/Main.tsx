@@ -5,7 +5,7 @@ import './main.scss'
 
 const Main = () => {
     const [sortType, setSortType] = useState(1)
-    const [listCategories, setListCategories] = useState<string>('trending')
+    const [listCategories, setListCategories] = useState<string>('popular')
 
     const sortTypeChange = (type: number) => {
         return type === 1 ? setSortType(1) : setSortType(0)
