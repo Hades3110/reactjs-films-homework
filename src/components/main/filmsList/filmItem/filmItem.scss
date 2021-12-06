@@ -3,7 +3,6 @@
     border-radius: 5px;
     &__image{
         object-fit:contain;
-        border-radius: 5px 0 0 5px;
     }
     &__title{
         display: flex;
@@ -41,6 +40,8 @@
     height: 250px;
     .filmImage{
         height: 250px;
+        border-radius: 5px 0 0 5px;
+
     }
     .filmTitle{
         padding: 1.5em;
@@ -75,6 +76,7 @@
 .row{
     .filmImage{
         width: 100%;
+        border-radius: 5px 5px 0 0;
     }
     .filmTitle{
         padding: 1em;

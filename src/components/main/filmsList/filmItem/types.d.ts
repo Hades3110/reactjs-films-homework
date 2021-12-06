@@ -6,6 +6,6 @@ export interface FilmPropertyInterface {
     rate: number
     overview: string
     filmGenres: number[]
-    sortType: number
+    sortType: boolean
     genres: GenreInterface[]
 }

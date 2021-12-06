@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react"
+import { ActionTypeInterface } from "../../../global"
 import FilmItem from "./filmItem/FilmItem"
 import { useSelector, useDispatch } from "react-redux"
-import { changeFilmCategoriesAndCount } from "../../../redux/filmList/action"
+import { changeFilmCategoriesAndCount } from "../../../redux/filmListCountAndCategories/action"
 import {
     FilmInterface,
     getFilmlist,
@@ -11,14 +12,15 @@ import {
 import uniqid from 'uniqid';
 import './filmList.scss'
 
-const FilmsList = ({ sortType }: { sortType: number }) => {
+const FilmsList = () => {
 
     const [filmArr, setFilmArr] = useState<FilmInterface[]>([])
     const [genres, setGenres] = useState<GenreInterface[]>([])
 
     const dispatch = useDispatch()
-    const pageCounter = useSelector((state: any) => state.pageCounter.count)
-    const categories = useSelector((state: any) => state.pageCounter.categories)
+    const pageCounter = useSelector((state: ActionTypeInterface) => state.pageCounter.count)
+    const categories = useSelector((state: ActionTypeInterface) => state.pageCounter.categories)
+    const sortType = useSelector((state: ActionTypeInterface) => state.sortType.type)
 
     useEffect(() => {
         if (pageCounter > 1) {

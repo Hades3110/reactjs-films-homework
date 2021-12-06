@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { FilmInfoInterface, GenreInterface, getHeadFilm } from '../../services/filmService'
 import StarRatings from 'react-star-ratings';
 import './mainBanner.scss'
+import { useSelector } from 'react-redux';
+import { ActionTypeInterface } from '../../global';
 
 const MainBanner: React.FC = () => {
 
@@ -12,11 +14,15 @@ const MainBanner: React.FC = () => {
             .then(res => setFilmInfo(res as FilmInfoInterface))
     }, [])
 
+    const display = useSelector((state: ActionTypeInterface) => state.mainBanner.display)
+    console.log(display)
+
     const bgImage: string = filmInfo.backdrop_path
     const vote = filmInfo.vote_average ? +(filmInfo.vote_average / 2).toFixed(1) : 0
 
     return (
         <div className="majorFilm" style={{
+            display: display ? 'flex' : 'none',
             backgroundImage: bgImage ? `url("https://image.tmdb.org/t/p/original${bgImage}")` : ''
         }}>
             <div className="infoAndRating">
