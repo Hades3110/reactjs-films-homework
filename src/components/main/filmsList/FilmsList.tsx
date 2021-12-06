@@ -8,6 +8,7 @@ import {
     getGenres,
     GenreInterface
 } from "../../../services/filmService"
+import uniqid from 'uniqid';
 import './filmList.scss'
 
 const FilmsList = ({ sortType }: { sortType: number }) => {
@@ -39,11 +40,11 @@ const FilmsList = ({ sortType }: { sortType: number }) => {
         <>
             <div className={sortType ? 'filmListRow' : 'filmListColumn'}>
                 {
-                    filmArr.map((el: FilmInterface) => {
+                    filmArr.map((el: FilmInterface, i: number) => {
                         return (
                             <FilmItem
                                 sortType={sortType}
-                                key={el.id}
+                                key={uniqid()}
                                 title={el.title}
                                 image={el.poster_path}
                                 rate={el.vote_average}
