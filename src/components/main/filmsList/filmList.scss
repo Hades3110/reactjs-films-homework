@@ -1,0 +1,32 @@
+.filmListRow{
+    width: 100%;
+    margin-top: 2%;
+    display: grid;
+    grid-template-columns: repeat(5 , 1fr);
+    grid-gap: 1em;
+}
+.filmListColumn{
+    width: 100%;
+    margin-top: 2%;
+    display: grid;
+    grid-template-columns: 1;
+    grid-gap: 2em;
+}
+.btn{
+    width: 15%;
+    margin: 4% auto;
+    &__more{
+        width: 100%;
+        height: 2em;
+        font-size: 20px;
+        color: #5db9e5;
+        border: 1px solid #5db9e5;
+        border-radius: 5px;
+        background: none;
+        cursor: pointer;
+        &:hover{
+            background-color: #5db9e5;
+            color: white;
+        }
+    }
+}
