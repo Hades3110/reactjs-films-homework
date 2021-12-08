@@ -40,6 +40,10 @@ export const getFilmlist = (categories: string, page: number) => {
     return getResource(`${process.env.API_BASE}movie/${categories}${process.env.API_KEY}&language=en-US&page=${page}`)
 }
 
+export const getSearchResult = (search: string) => {
+    return getResource(`${process.env.API_BASE}search/multi${process.env.API_KEY}&language=en-US&query=${search}&page=1`)
+}
+
 export const getGenres = () => {
     return getResource(`${process.env.API_BASE}genre/movie/list${process.env.API_KEY}`)
 }

@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { changeBannerDisplay } from "../../redux/mainBanner/action";
+import { changeDisplayAndSearch } from "../../redux/mainBannerAndSearch/action";
 import {
     BrowserRouter as Router,
     Link
@@ -17,7 +17,10 @@ const Header = () => {
                 <Link to="/"><h1>FILMS</h1></Link>
             </Router>
             <div className="search">
-                <input type="text" onChange={(e) => e.target.value.length > 0 ? dispatch(changeBannerDisplay(false)) : dispatch(changeBannerDisplay(true))} />
+                <input
+                    type="text"
+                    onChange={(e) => e.target.value.length > 0 ? dispatch(changeDisplayAndSearch(false, e.target.value)) : dispatch(changeDisplayAndSearch(true, e.target.value))}
+                />
                 <img src={imgSearch} alt="" />
             </div>
         </header>

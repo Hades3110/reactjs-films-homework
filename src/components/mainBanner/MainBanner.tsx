@@ -14,8 +14,7 @@ const MainBanner: React.FC = () => {
             .then(res => setFilmInfo(res as FilmInfoInterface))
     }, [])
 
-    const display = useSelector((state: ActionTypeInterface) => state.mainBanner.display)
-    console.log(display)
+    const display = useSelector((state: ActionTypeInterface) => state.mainBannerAndSearch.display)
 
     const bgImage: string = filmInfo.backdrop_path
     const vote = filmInfo.vote_average ? +(filmInfo.vote_average / 2).toFixed(1) : 0

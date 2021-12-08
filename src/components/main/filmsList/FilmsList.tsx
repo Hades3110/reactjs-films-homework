@@ -7,7 +7,8 @@ import {
     FilmInterface,
     getFilmlist,
     getGenres,
-    GenreInterface
+    GenreInterface,
+    getSearchResult
 } from "../../../services/filmService"
 import uniqid from 'uniqid';
 import './filmList.scss'
@@ -22,21 +23,39 @@ const FilmsList = () => {
     const categories = useSelector((state: ActionTypeInterface) => state.pageCounter.categories)
     const sortType = useSelector((state: ActionTypeInterface) => state.sortType.type)
 
+    const search = useSelector((state: ActionTypeInterface) => state.mainBannerAndSearch.search)
+
     useEffect(() => {
-        if (pageCounter > 1) {
-            getFilmlist(categories, pageCounter)
-                .then(res => setFilmArr(() => ([...filmArr, ...res.results])))
+        if (search.length > 0) {
+            // const handle: ReturnType<typeof setTimeout> = setTimeout(() => {
+            getSearchResult(search)
+                .then(res => {
+                    if (res.results.length > 0) {
+                        setFilmArr(res.results)
+                    } else {
+                        console.log('e')
+                    }
+
+                })
+            // }, 1000)
+
+            // return () => clearTimeout(handle)
         } else {
-            getFilmlist(categories, pageCounter)
-                .then(res => setFilmArr(res.results))
+            if (pageCounter > 1) {
+                getFilmlist(categories, pageCounter)
+                    .then(res => setFilmArr(() => ([...filmArr, ...res.results])))
+            } else {
+                getFilmlist(categories, pageCounter)
+                    .then(res => setFilmArr(res.results))
+            }
         }
-    }, [categories, pageCounter])
+
+    }, [categories, pageCounter, search])
 
     useEffect(() => {
         getGenres()
             .then(res => setGenres(res.genres))
     }, [])
-
 
     return (
         <>
@@ -59,7 +78,9 @@ const FilmsList = () => {
                 }
             </div>
             <div className="btn"
-                onClick={() => dispatch(changeFilmCategoriesAndCount(pageCounter + 1, categories))}>
+                onClick={() => {
+                    dispatch(changeFilmCategoriesAndCount(pageCounter + 1, categories))
+                }}>
                 <button className="btn__more">Load More</button>
             </div>
         </>

@@ -1,12 +1,12 @@
 import { combineReducers } from "redux";
 import filmListPageCountReducer from "./filmListCountAndCategories/reducer";
 import filmListSortReducer from "./filmListSort/reducer";
-import mainBannerReducer from "./mainBanner/reducer";
+import mainBannerAndSearchReducer from "./mainBannerAndSearch/reducer";
 
 const rootReducer = combineReducers({
     pageCounter: filmListPageCountReducer,
     sortType: filmListSortReducer,
-    mainBanner: mainBannerReducer
+    mainBannerAndSearch: mainBannerAndSearchReducer
 })
 
 export default rootReducer
