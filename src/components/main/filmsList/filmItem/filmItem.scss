@@ -39,8 +39,10 @@
     align-content: flex-start;
     height: 250px;
     .filmImage{
-        height: 250px;
-        border-radius: 5px 0 0 5px;
+        img{
+            height: 250px;
+            border-radius: 5px 0 0 5px;
+        }
 
     }
     .filmTitle{
@@ -75,8 +77,12 @@
 
 .row{
     .filmImage{
-        width: 100%;
-        border-radius: 5px 5px 0 0;
+        height: 380px;
+        overflow: hidden;
+        img{
+            width: 100%;
+            border-radius: 5px 5px 0 0; 
+        }
     }
     .filmTitle{
         padding: 1em;

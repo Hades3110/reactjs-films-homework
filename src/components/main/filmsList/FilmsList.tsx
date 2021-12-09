@@ -12,11 +12,13 @@ import {
 } from "../../../services/filmService"
 import uniqid from 'uniqid';
 import './filmList.scss'
+import spinner from '/public/assets/spinner.gif'
 
 const FilmsList = () => {
 
     const [filmArr, setFilmArr] = useState<FilmInterface[]>([])
     const [genres, setGenres] = useState<GenreInterface[]>([])
+    const [onLoaded, setOnLoaded] = useState<boolean>(true)
 
     const dispatch = useDispatch()
     const pageCounter = useSelector((state: ActionTypeInterface) => state.pageCounter.count)
@@ -32,6 +34,7 @@ const FilmsList = () => {
                 .then(res => {
                     if (res.results.length > 0) {
                         setFilmArr(res.results)
+                        setOnLoaded(false)
                     } else {
                         console.log('e')
                     }
@@ -43,10 +46,17 @@ const FilmsList = () => {
         } else {
             if (pageCounter > 1) {
                 getFilmlist(categories, pageCounter)
-                    .then(res => setFilmArr(() => ([...filmArr, ...res.results])))
+                    .then(res => {
+                        setFilmArr(() => ([...filmArr, ...res.results]))
+                        setOnLoaded(false)
+                    })
+                setOnLoaded(false)
             } else {
                 getFilmlist(categories, pageCounter)
-                    .then(res => setFilmArr(res.results))
+                    .then(res => {
+                        setFilmArr(res.results)
+                        setOnLoaded(false)
+                    })
             }
         }
 
@@ -59,24 +69,24 @@ const FilmsList = () => {
 
     return (
         <>
-            <div className={sortType ? 'filmListRow' : 'filmListColumn'}>
+            {onLoaded ? <img src={spinner} className="spinner" /> : <div className={sortType ? 'filmListRow' : 'filmListColumn'}>
                 {
                     filmArr.map((el: FilmInterface, i: number) => {
                         return (
                             <FilmItem
                                 sortType={sortType}
                                 key={uniqid()}
-                                title={el.title}
+                                title={el.title ?? 'Name not found'}
                                 image={el.poster_path}
                                 rate={el.vote_average}
-                                overview={el.overview}
+                                overview={el.overview ?? 'No description'}
                                 filmGenres={el.genre_ids}
                                 genres={genres}
                             />
                         )
                     })
                 }
-            </div>
+            </div>}
             <div className="btn"
                 onClick={() => {
                     dispatch(changeFilmCategoriesAndCount(pageCounter + 1, categories))
