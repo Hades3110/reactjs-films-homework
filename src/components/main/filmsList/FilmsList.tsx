@@ -3,6 +3,7 @@ import { ActionTypeInterface } from "../../../global"
 import FilmItem from "./filmItem/FilmItem"
 import { useSelector, useDispatch } from "react-redux"
 import { changeFilmCategoriesAndCount } from "../../../redux/filmListCountAndCategories/action"
+import { changeLoading } from "../../../redux/loading/action"
 import {
     FilmInterface,
     getFilmlist,
@@ -13,7 +14,7 @@ import {
 import uniqid from 'uniqid';
 import './filmList.scss'
 import spinner from '/public/assets/spinner.gif'
-import { changeLoading } from "../../../redux/loading/action"
+import errorMassage from '/public/assets/error.gif'
 
 const FilmsList = () => {
 
@@ -34,10 +35,11 @@ const FilmsList = () => {
             getSearchResult(search)
                 .then(res => {
                     if (res.results.length > 0) {
-                        setFilmArr(res.results)
+                        setFilmArr(res.results.filter(film => film.poster_path && film.title))
                         dispatch(changeLoading(true))
                     } else {
                         console.log('e')
+                        dispatch(changeLoading(true))
                     }
 
                 })
@@ -48,13 +50,13 @@ const FilmsList = () => {
             if (pageCounter > 1) {
                 getFilmlist(categories, pageCounter)
                     .then(res => {
-                        setFilmArr(() => ([...filmArr, ...res.results]))
+                        setFilmArr(res.results.filter(film => film.poster_path && film.title))
                         dispatch(changeLoading(true))
                     })
             } else {
                 getFilmlist(categories, pageCounter)
                     .then(res => {
-                        setFilmArr(res.results)
+                        setFilmArr(res.results.filter(film => film.poster_path && film.title))
                         dispatch(changeLoading(true))
                     })
             }
@@ -67,34 +69,38 @@ const FilmsList = () => {
             .then(res => setGenres(res.genres))
     }, [])
 
-    console.log(filmArr)
+    // console.log(filmArr)
     return (
         <>
-            {isLoaded ?
-                <div className={sortType ? 'filmListRow' : 'filmListColumn'}>
-                    {
-                        filmArr.map((el: FilmInterface, i: number) => {
-                            return (
-                                <FilmItem
-                                    sortType={sortType}
-                                    key={uniqid()}
-                                    title={el.title ?? 'Name not found'}
-                                    image={el.poster_path}
-                                    rate={el.vote_average}
-                                    overview={el.overview ?? 'No description'}
-                                    filmGenres={el.genre_ids}
-                                    genres={genres}
-                                />
-                            )
-                        })
-                    }
-                </div> : <img src={spinner} className="spinner" />}
-            <div className="btn"
-                onClick={() => {
-                    dispatch(changeFilmCategoriesAndCount(pageCounter + 1, categories))
-                }}>
-                <button className="btn__more">Load More</button>
-            </div>
+            {filmArr.length === 0 ? <div className="errorMassage"><img src={errorMassage} /></div> :
+                isLoaded ?
+                    <>
+                        <div className={sortType ? 'filmListRow' : 'filmListColumn'}>
+                            {
+                                filmArr.map((el: FilmInterface, i: number) => {
+                                    return (
+                                        <FilmItem
+                                            sortType={sortType}
+                                            key={uniqid()}
+                                            title={el.title ?? 'Name not found'}
+                                            image={el.poster_path}
+                                            rate={el.vote_average}
+                                            overview={el.overview ?? 'No description'}
+                                            filmGenres={el.genre_ids}
+                                            genres={genres}
+                                        />
+                                    )
+                                })
+                            }
+                        </div>
+                        <div className="btn"
+                            onClick={() => {
+                                dispatch(changeFilmCategoriesAndCount(pageCounter + 1, categories))
+                            }}>
+                            <button className="btn__more">Load More</button>
+                        </div>
+                    </> :
+                    <img src={spinner} className="spinner" />}
         </>
     )
 }
