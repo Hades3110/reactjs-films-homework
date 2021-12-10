@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 import './header.scss'
 import imgSearch from '/public/assets/search.png'
+import { changeLoading } from "../../redux/loading/action";
 
 const Header = () => {
 
@@ -19,7 +20,11 @@ const Header = () => {
             <div className="search">
                 <input
                     type="text"
-                    onChange={(e) => e.target.value.length > 0 ? dispatch(changeDisplayAndSearch(false, e.target.value)) : dispatch(changeDisplayAndSearch(true, e.target.value))}
+                    onChange={(e) => {
+                        e.target.value.length > 0 ? dispatch(changeDisplayAndSearch(false, e.target.value)) : dispatch(changeDisplayAndSearch(true, e.target.value))
+                        dispatch(changeLoading(false))
+                    }
+                    }
                 />
                 <img src={imgSearch} alt="" />
             </div>

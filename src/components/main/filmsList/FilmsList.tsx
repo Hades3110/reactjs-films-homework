@@ -13,17 +13,18 @@ import {
 import uniqid from 'uniqid';
 import './filmList.scss'
 import spinner from '/public/assets/spinner.gif'
+import { changeLoading } from "../../../redux/loading/action"
 
 const FilmsList = () => {
 
     const [filmArr, setFilmArr] = useState<FilmInterface[]>([])
     const [genres, setGenres] = useState<GenreInterface[]>([])
-    const [onLoaded, setOnLoaded] = useState<boolean>(true)
 
     const dispatch = useDispatch()
     const pageCounter = useSelector((state: ActionTypeInterface) => state.pageCounter.count)
     const categories = useSelector((state: ActionTypeInterface) => state.pageCounter.categories)
     const sortType = useSelector((state: ActionTypeInterface) => state.sortType.type)
+    const isLoaded = useSelector((state: ActionTypeInterface) => state.movieLoader.isLoaded)
 
     const search = useSelector((state: ActionTypeInterface) => state.mainBannerAndSearch.search)
 
@@ -34,7 +35,7 @@ const FilmsList = () => {
                 .then(res => {
                     if (res.results.length > 0) {
                         setFilmArr(res.results)
-                        setOnLoaded(false)
+                        dispatch(changeLoading(true))
                     } else {
                         console.log('e')
                     }
@@ -48,14 +49,13 @@ const FilmsList = () => {
                 getFilmlist(categories, pageCounter)
                     .then(res => {
                         setFilmArr(() => ([...filmArr, ...res.results]))
-                        setOnLoaded(false)
+                        dispatch(changeLoading(true))
                     })
-                setOnLoaded(false)
             } else {
                 getFilmlist(categories, pageCounter)
                     .then(res => {
                         setFilmArr(res.results)
-                        setOnLoaded(false)
+                        dispatch(changeLoading(true))
                     })
             }
         }
@@ -67,26 +67,28 @@ const FilmsList = () => {
             .then(res => setGenres(res.genres))
     }, [])
 
+    console.log(filmArr)
     return (
         <>
-            {onLoaded ? <img src={spinner} className="spinner" /> : <div className={sortType ? 'filmListRow' : 'filmListColumn'}>
-                {
-                    filmArr.map((el: FilmInterface, i: number) => {
-                        return (
-                            <FilmItem
-                                sortType={sortType}
-                                key={uniqid()}
-                                title={el.title ?? 'Name not found'}
-                                image={el.poster_path}
-                                rate={el.vote_average}
-                                overview={el.overview ?? 'No description'}
-                                filmGenres={el.genre_ids}
-                                genres={genres}
-                            />
-                        )
-                    })
-                }
-            </div>}
+            {isLoaded ?
+                <div className={sortType ? 'filmListRow' : 'filmListColumn'}>
+                    {
+                        filmArr.map((el: FilmInterface, i: number) => {
+                            return (
+                                <FilmItem
+                                    sortType={sortType}
+                                    key={uniqid()}
+                                    title={el.title ?? 'Name not found'}
+                                    image={el.poster_path}
+                                    rate={el.vote_average}
+                                    overview={el.overview ?? 'No description'}
+                                    filmGenres={el.genre_ids}
+                                    genres={genres}
+                                />
+                            )
+                        })
+                    }
+                </div> : <img src={spinner} className="spinner" />}
             <div className="btn"
                 onClick={() => {
                     dispatch(changeFilmCategoriesAndCount(pageCounter + 1, categories))
