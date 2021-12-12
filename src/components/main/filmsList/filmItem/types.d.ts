@@ -1,4 +1,4 @@
-import { GenreInterface } from "../../../../services/filmService";
+import { GenreInterface } from '../../../../services/filmService'
 
 export interface FilmPropertyInterface {
     title: string
@@ -6,6 +6,6 @@ export interface FilmPropertyInterface {
     rate: number
     overview: string
     filmGenres: number[]
-    sortType: boolean
+    sortType?: boolean
     genres: GenreInterface[]
 }

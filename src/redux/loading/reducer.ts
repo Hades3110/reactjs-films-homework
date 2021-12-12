@@ -1,4 +1,4 @@
-import { MOVIE_LOADER } from "./action";
+import { MOVIE_LOADER } from './action'
 
 const initialState = {
     isLoaded: false

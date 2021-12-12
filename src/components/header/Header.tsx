@@ -1,35 +1,31 @@
-import { useDispatch } from "react-redux";
-import { changeDisplayAndSearch } from "../../redux/mainBannerAndSearch/action";
-import {
-    BrowserRouter as Router,
-    Link
-} from "react-router-dom";
-import './header.scss'
+import { Link, useNavigate } from 'react-router-dom'
+import styles from './header.module.scss'
 import imgSearch from '/public/assets/search.png'
-import { changeLoading } from "../../redux/loading/action";
+import { useState } from 'react'
 
 const Header = () => {
 
-    const dispatch = useDispatch()
+    const [value, setValue] = useState<string>('')
 
-    return (
-        <header>
-            <Router>
-                <Link to="/"><h1>FILMS</h1></Link>
-            </Router>
-            <div className="search">
-                <input
-                    type="text"
-                    onChange={(e) => {
-                        e.target.value.length > 0 ? dispatch(changeDisplayAndSearch(false, e.target.value)) : dispatch(changeDisplayAndSearch(true, e.target.value))
-                        dispatch(changeLoading(false))
+    const navigate = useNavigate()
+
+    return <header>
+        <Link to='/'><h1>FILMS</h1></Link>
+        <div className={styles.search}>
+            <input
+                type='text'
+                onChange={(e) => setValue(e.target.value)}
+                onKeyPress={(e): void => {
+                    if (e.charCode === 13 && value !== '') {
+                        navigate(`/search/${value}`)
                     }
-                    }
-                />
-                <img src={imgSearch} alt="" />
-            </div>
-        </header>
-    )
+                }}
+            />
+            <Link to={`/search/${value}`}>
+                <img src={imgSearch} alt='' />
+            </Link>
+        </div>
+    </header>
 }
 
 export default Header

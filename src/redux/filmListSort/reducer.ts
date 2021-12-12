@@ -1,4 +1,4 @@
-import { FILM_LIST_SORT } from "./action";
+import { FILM_LIST_SORT } from './action'
 
 const initialState = {
     type: true

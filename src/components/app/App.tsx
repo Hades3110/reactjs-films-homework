@@ -1,16 +1,8 @@
 import './app.scss'
-import MainBanner from '../mainBanner/MainBanner'
-import Main from '../main/Main'
-import Footer from '../footer/Footer'
-import Header from '../header/Header'
+import RoutePages from '../../router/router'
 
-const App = () => {
-        return <>
-                <Header />
-                <MainBanner />
-                <Main />
-                <Footer />
-        </>
-}
+const App = () => (
+        <RoutePages />
+)
 
 export default App
