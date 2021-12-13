@@ -3,13 +3,24 @@ import { FilmInfoInterface, GenreInterface, getHeadFilm } from '../../services/f
 import StarRatings from 'react-star-ratings'
 import styles from './mainBanner.module.scss'
 
+const initialState: FilmInfoInterface = {
+    backdrop_path: '',
+    page: 1,
+    genres: [],
+    title: '',
+    results: [],
+    total_pages: 1,
+    total_results: 1,
+    vote_average: 1,
+    runtime: 1
+}
+
 const MainBanner: React.FC = () => {
 
-    const [filmInfo, setFilmInfo] = useState({} as FilmInfoInterface)
+    const [filmInfo, setFilmInfo] = useState<FilmInfoInterface>(initialState)
 
     useEffect(() => {
-        getHeadFilm()
-            .then(res => setFilmInfo(res as FilmInfoInterface))
+        getHeadFilm().then(res => setFilmInfo(res))
     }, [])
 
     const bgImage: string = filmInfo.backdrop_path

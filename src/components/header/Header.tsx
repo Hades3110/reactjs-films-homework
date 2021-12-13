@@ -4,27 +4,18 @@ import imgSearch from '/public/assets/search.png'
 import { useState } from 'react'
 
 const Header = () => {
-
     const [value, setValue] = useState<string>('')
 
     const navigate = useNavigate()
 
     return <header>
         <Link to='/'><h1>FILMS</h1></Link>
-        <div className={styles.search}>
+        <form className={styles.search} onSubmit={(e) => value ? (navigate(`/search?film=${value}`), e.preventDefault()) : e.preventDefault()}>
             <input
-                type='text'
                 onChange={(e) => setValue(e.target.value)}
-                onKeyPress={(e): void => {
-                    if (e.charCode === 13 && value !== '') {
-                        navigate(`/search/${value}`)
-                    }
-                }}
             />
-            <Link to={`/search/${value}`}>
-                <img src={imgSearch} alt='' />
-            </Link>
-        </div>
+            <button><img src={imgSearch} alt='magnifying glass' /></button>
+        </form>
     </header>
 }
 

@@ -8,8 +8,7 @@ import {
 } from '../../../services/filmService'
 import uniqid from 'uniqid'
 import spinner from '/public/assets/spinner.gif'
-import errorMassage from '/public/assets/error.gif'
-import { useParams } from 'react-router'
+import { useLocation } from 'react-router'
 import styles from './searchPageFilmList.module.scss'
 
 const SearchPageFilmList = () => {
@@ -19,10 +18,12 @@ const SearchPageFilmList = () => {
     const [filmNotFount, setFilmNotFount] = useState<boolean>(false)
     const [loading, setLoading] = useState<boolean>(true)
 
-    const { id } = useParams()
+    const { search } = useLocation()
+    const searchParams = new URLSearchParams(search)
+    const film = searchParams.get('film')
 
     useEffect(() => {
-        getSearchResult(id ?? '')
+        getSearchResult(film ?? '')
             .then(res => {
                 const result = res.results.filter(film => film.poster_path && film.title)
                 if (result.length > 0) {
@@ -35,7 +36,7 @@ const SearchPageFilmList = () => {
                 }
 
             })
-    }, [id])
+    }, [film])
 
     useEffect(() => {
         getGenres()
@@ -64,7 +65,9 @@ const SearchPageFilmList = () => {
                                 })
                             }
                         </div>
-                    </div>)}
+                    </div>
+                )
+            }
         </>
     )
 }
