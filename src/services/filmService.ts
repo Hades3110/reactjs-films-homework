@@ -12,7 +12,8 @@ export interface FilmInterface {
     vote_average: number
     overview: string
     genre_ids: []
-    genres: GenreInterface[]
+    genres: GenreInterface[],
+    key: ''
 }
 
 export interface GenreInterface {
@@ -21,6 +22,7 @@ export interface GenreInterface {
 }
 
 export interface FilmInfoInterface extends FilmApiInterface {
+    id: number
     backdrop_path: string
     title: string
     genres: GenreInterface[]
@@ -52,4 +54,8 @@ export const getGenres = () => {
 
 export const getHeadFilm = () => {
     return getResource(`${process.env.API_BASE}movie/561=${process.env.API_KEY}`)
+}
+
+export const getFilmVideo = (id: number) => {
+    return getResource(`${process.env.API_BASE}movie/${id}/videos${process.env.API_KEY}&language=en-US`)
 }
