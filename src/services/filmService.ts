@@ -26,6 +26,7 @@ export interface FilmInfoInterface extends FilmApiInterface {
     genres: GenreInterface[]
     vote_average: number
     runtime: number
+    overview: string
 }
 
 // get API

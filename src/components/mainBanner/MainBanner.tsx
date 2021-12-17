@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { FilmInfoInterface, GenreInterface, getHeadFilm } from '../../services/filmService'
 import StarRatings from 'react-star-ratings'
 import styles from './mainBanner.module.scss'
+import cx from 'classnames'
 
 const initialState: FilmInfoInterface = {
     backdrop_path: '',
@@ -12,12 +13,14 @@ const initialState: FilmInfoInterface = {
     total_pages: 1,
     total_results: 1,
     vote_average: 1,
-    runtime: 1
+    runtime: 1,
+    overview: ''
 }
 
 const MainBanner: React.FC = () => {
 
     const [filmInfo, setFilmInfo] = useState<FilmInfoInterface>(initialState)
+    const [overview, setOverview] = useState<boolean>(false)
 
     useEffect(() => {
         getHeadFilm().then(res => setFilmInfo(res))
@@ -31,13 +34,16 @@ const MainBanner: React.FC = () => {
             backgroundImage: bgImage ? `url('https://image.tmdb.org/t/p/original${bgImage}')` : ''
         }}>
             <div className={styles.infoAndRating}>
-                <h1>{filmInfo.title as string}</h1>
                 <div className={styles.infoAndRating__moreInfo}>
-                    <ul>
-                        {filmInfo.genres ? filmInfo.genres.map((el: GenreInterface) => <li key={el.id}>{el.name}</li>) : ''}
-                        <li>|</li>
-                        <li>{runtime}</li>
-                    </ul>
+                    <div>
+                        <h1>{filmInfo.title}</h1>
+                        <ul>
+                            {filmInfo.genres ? filmInfo.genres.map((el: GenreInterface) => <li key={el.id}>{el.name}</li>) : ''}
+                            <li>|</li>
+                            <li>{runtime}</li>
+                        </ul>
+                    </div>
+                    <div className={styles.overview} style={overview ? { display: 'block' } : { display: 'none' }}>{filmInfo.overview}</div>
                 </div>
                 <div className={styles.infoAndRating__ratingAndBtn}>
                     <div className={styles.infoAndRating__ratingAndBtn__rating}>
@@ -52,7 +58,7 @@ const MainBanner: React.FC = () => {
                     </div>
                     <div className={styles.infoAndRating__ratingAndBtn__btns}>
                         <button className={styles.infoAndRating__ratingAndBtn__btns__watch}>Watch now</button>
-                        <button className={styles.infoAndRating__ratingAndBtn__btns__view}>View Info</button>
+                        <button id={overview ? styles.btnView : ''} onClick={() => setOverview(!overview)}>View Info</button>
                     </div>
                 </div>
             </div>
