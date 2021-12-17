@@ -1,4 +1,4 @@
-import { FILM_LIST_CATEGORIES_AND_PAGE_COUNT } from "./action";
+import { FILM_LIST_CATEGORIES_AND_PAGE_COUNT } from './action'
 
 const initialState = {
     count: 1,

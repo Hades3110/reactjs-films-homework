@@ -3,11 +3,11 @@ header {
     position: fixed;
     top: 0;
     padding: 1% 5% 1%;
-    background:linear-gradient(rgb(34, 34, 34),rgba(37, 37, 37, 0.795));
+    background: linear-gradient(rgb(34, 34, 34), rgba(37, 37, 37, 0.795));
     display: flex;
     justify-content: space-between;
     color: #efece9;
-    a{
+    a {
         color: white;
         text-decoration: none;
     }
@@ -15,7 +15,6 @@ header {
         font-size: 38px;
         font-weight: 200;
         cursor: pointer;
-        
     }
     .search {
         width: 25%;
@@ -36,6 +35,11 @@ header {
         }
         img {
             height: 40px;
+            cursor: pointer;
+        }
+        button {
+            background: none;
+            border: none;
         }
     }
 }

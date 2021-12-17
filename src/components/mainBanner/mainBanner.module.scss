@@ -22,17 +22,26 @@
         width: 100%;
         display: flex;
         flex-wrap: wrap;
+        align-items: flex-end;
         justify-content: space-between;
-        padding-bottom: 3%;
+        padding-bottom: 2%;
         ul {
             display: flex;
             flex-wrap: wrap;
             list-style: none;
             justify-content: space-between;
             text-shadow: 0 0 5px black;
-            li{
+            li {
                 margin-right: 1em;
             }
+        }
+        .overview {
+            width: 20%;
+            padding: 0.5em 1em;
+            background-color: rgba(34, 34, 34, 0.733);
+            border-radius: 5px;
+            line-height: 1.4em;
+            font-size: 15px;
         }
     }
     &__ratingAndBtn {
@@ -66,15 +75,14 @@
                 font-size: 20px;
                 border-radius: 5px;
                 cursor: pointer;
-            }
-            &__watch {
-                background-color: #5db9e5;
+                background: #5db9e5;
                 border: none;
             }
-            &__view {
+            #btnView {
                 background: none;
+                padding: calc(0.5em - 2px) 0.5em;
                 border: 1px solid #efece9;
-                background: linear-gradient(rgb(39, 39, 39),rgba(255, 255, 255, 0));
+                background: linear-gradient(rgb(39, 39, 39), rgba(255, 255, 255, 0));
             }
         }
     }

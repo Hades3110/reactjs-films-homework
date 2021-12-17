@@ -1,35 +1,22 @@
-import { useDispatch } from "react-redux";
-import { changeDisplayAndSearch } from "../../redux/mainBannerAndSearch/action";
-import {
-    BrowserRouter as Router,
-    Link
-} from "react-router-dom";
-import './header.scss'
+import { Link, useNavigate } from 'react-router-dom'
+import styles from './header.module.scss'
 import imgSearch from '/public/assets/search.png'
-import { changeLoading } from "../../redux/loading/action";
+import { useState } from 'react'
 
 const Header = () => {
+    const [value, setValue] = useState<string>('')
 
-    const dispatch = useDispatch()
+    const navigate = useNavigate()
 
-    return (
-        <header>
-            <Router>
-                <Link to="/"><h1>FILMS</h1></Link>
-            </Router>
-            <div className="search">
-                <input
-                    type="text"
-                    onChange={(e) => {
-                        e.target.value.length > 0 ? dispatch(changeDisplayAndSearch(false, e.target.value)) : dispatch(changeDisplayAndSearch(true, e.target.value))
-                        dispatch(changeLoading(false))
-                    }
-                    }
-                />
-                <img src={imgSearch} alt="" />
-            </div>
-        </header>
-    )
+    return <header>
+        <Link to='/'><h1>FILMS</h1></Link>
+        <form className={styles.search} onSubmit={(e) => value ? (navigate(`/search?film=${value}`), e.preventDefault()) : e.preventDefault()}>
+            <input
+                onChange={(e) => setValue(e.target.value)}
+            />
+            <button><img src={imgSearch} alt='magnifying glass' /></button>
+        </form>
+    </header>
 }
 
 export default Header

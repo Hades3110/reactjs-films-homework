@@ -1,19 +1,12 @@
-import { useSelector } from "react-redux"
-import { ActionTypeInterface } from "../../global"
-import FilmsFilter from "./filmsFilter/FilmsFilter"
-import FilmsList from "./filmsList/FilmsList"
-import './main.scss'
+import FilmsFilter from './filmsFilter/FilmsFilter'
+import FilmsList from './filmsList/FilmsList'
+import styles from './main.module.scss'
 
-const Main = () => {
-
-    const display = useSelector((state: ActionTypeInterface) => state.mainBannerAndSearch.display)
-
-    return (
-        <main className="main" style={{ marginTop: display ? 0 : '5em' }}>
-            <FilmsFilter />
-            <FilmsList />
-        </main>
-    )
-}
+const Main = () => (
+    <main className={styles.main}>
+        <FilmsFilter />
+        <FilmsList />
+    </main>
+)
 
 export default Main
