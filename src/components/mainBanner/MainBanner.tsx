@@ -35,18 +35,18 @@ const MainBanner: React.FC = () => {
     const runtime = `${~~(filmInfo.runtime / 60)}h  ${filmInfo.runtime % 60}m`
 
     return (<>
-        <div className={styles.video} style={{ display: watch ? 'block' : 'none' }} onClick={() => {
+        {watch ? <div className={styles.video} onClick={() => {
             setWatch(false)
-            document.body.style.overflow = 'visible'
         }
         }>
             <ReactPlayer
                 className={styles.player}
                 url={`https://www.youtube.com/watch?v=${videoKey}`}
-                playing={watch}
                 controls={true}
+                width={'60%'}
+                height={'70vh'}
             />
-        </div>
+        </div> : ''}
         <div className={styles.majorFilm} style={{
             backgroundImage: bgImage ? `url('https://image.tmdb.org/t/p/original${bgImage}')` : ''
         }}>
@@ -76,7 +76,6 @@ const MainBanner: React.FC = () => {
                     <div className={styles.infoAndRating__ratingAndBtn__btns}>
                         <button className={styles.infoAndRating__ratingAndBtn__btns__watch} onClick={() => {
                             setWatch(true)
-                            document.body.style.overflow = 'hidden'
                         }
                         }>Watch now</button>
                         <button id={overview ? styles.btnView : ''} onClick={() => setOverview(!overview)}>View Info</button>
