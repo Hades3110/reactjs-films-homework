@@ -15,7 +15,7 @@ const Video = () => {
     const id = useSelector((state: ActionTypeInterface) => state.videoPlayer.id)
 
     useEffect(() => {
-        if (id) getFilmVideo(id).then(res => setKey(res.results[0].key))
+        if (id) getFilmVideo(id).then(res => setKey(res.results[1].key))
     })
     console.log(id)
 
