@@ -39,9 +39,33 @@
     align-content: flex-start;
     height: 250px;
     .filmImage {
-        img {
-            height: 250px;
-            border-radius: 5px 0 0 5px;
+        width: 13%;
+        height: 250px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        border-radius: 5px 0 0 5px;
+        &__hover {
+            display: none;
+        }
+        &:hover {
+            .filmImage__hover {
+                position: absolute;
+                width: 11.6%;
+                height: 250px;
+                background-color: rgba(39, 39, 39, 0.842);
+                border-radius: 5px 0 0 5px;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-evenly;
+                align-items: center;
+                &__icon {
+                    width: 50%;
+                    cursor: pointer;
+                }
+                button {
+                    display: none;
+                }
+            }
         }
     }
     .filmTitle {
@@ -83,33 +107,55 @@
         &__hover {
             display: none;
         }
-        &:hover .filmImage__hover {
-            position: absolute;
-            width: 17.15%;
-            height: 380px;
-            background-color: rgba(39, 39, 39, 0.842);
-            border-radius: 5px 5px 0 0;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-evenly;
-            align-items: center;
-            &__icon {
-                width: 50%;
-                cursor: pointer;
+        &:hover {
+            .filmImage__hover {
+                position: absolute;
+                width: 17.15%;
+                height: 380px;
+                background-color: rgba(39, 39, 39, 0.842);
+                border-radius: 5px 5px 0 0;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-evenly;
+                align-items: center;
+                &__icon {
+                    width: 50%;
+                    cursor: pointer;
+                }
+                &__button {
+                    width: 50%;
+                    padding: 0.5em;
+                    color: white;
+                    font-size: 20px;
+                    border-radius: 5px;
+                    cursor: pointer;
+                    background: none;
+                    border: 1px white solid;
+                    &:hover {
+                        padding: calc(0.5em + 1px) 0.5em;
+                        background-color: #5db9e5;
+                        border: none;
+                    }
+                }
             }
-            &__button {
-                width: 50%;
-                padding: 0.5em;
-                color: white;
-                font-size: 20px;
-                border-radius: 5px;
-                cursor: pointer;
-                background: none;
-                border: 1px white solid;
-                &:hover {
-                    padding: calc(0.5em + 1px) 0.5em;
-                    background-color: #5db9e5;
-                    border: none;
+            .filmImage__hover__overview {
+                align-items: flex-start;
+                justify-content: flex-start;
+                padding: 1em;
+                img {
+                    cursor: pointer;
+                    display: block;
+                    width: 10%;
+                    border-radius: 5px;
+                    &:hover {
+                        background-color: #5db9e5;
+                    }
+                }
+                div {
+                    color: white;
+                    text-align: justify;
+                    padding: 1em 0;
+                    overflow: scroll;
                 }
             }
         }

@@ -2,12 +2,16 @@ import { FilmPropertyInterface } from './types'
 import { GenreInterface } from '../../../../services/filmService'
 import imageNorFound from '/public/assets/imageNotFound.png'
 import iconPlay from '/public/assets/icon_play.png'
+import closeIcon from '/public/assets/icon_white_close.png'
 import cx from 'classnames'
 import styles from './filmItem.module.scss'
 import { useDispatch } from 'react-redux'
 import { changeVideoWindow } from '../../../../redux/filmVideoPlay/action'
+import { useState } from 'react'
 
 const FilmItem = ({ id, title, image, rate, overview, filmGenres, sortType = true, genres }: FilmPropertyInterface) => {
+
+    const [overviewRowOpen, setOverviewRowOpen] = useState<boolean>(false)
 
     const genreName: GenreInterface[] = genres.filter((el: GenreInterface) => {
         return filmGenres.find((id: number) => id === el.id)
@@ -20,15 +24,18 @@ const FilmItem = ({ id, title, image, rate, overview, filmGenres, sortType = tru
     return (
         <div className={sortType ? cx(styles.filmItem, styles.row) : cx(styles.filmItem, styles.column)}>
             <div className={styles.filmImage} style={{ backgroundImage: `url(${imageUrl})` }}>
-                <div className={styles.filmImage__hover}>
-                    <img
-                        src={iconPlay}
-                        alt="Icon Play"
-                        className={styles.filmImage__hover__icon}
-                        onClick={() => dispatch(changeVideoWindow(true, id))}
-                    />
-                    <button className={styles.filmImage__hover__button}>View Info</button>
-                </div>
+                {overviewRowOpen ? <div className={cx(styles.filmImage__hover, styles.filmImage__hover__overview)}>
+                    <img src={closeIcon} alt="" onClick={() => setOverviewRowOpen(false)} /><div>{overview}</div>
+                </div> :
+                    <div className={styles.filmImage__hover}>
+                        <img
+                            src={iconPlay}
+                            alt="Icon Play"
+                            className={styles.filmImage__hover__icon}
+                            onClick={() => dispatch(changeVideoWindow(true, id))}
+                        />
+                        <button className={styles.filmImage__hover__button} onClick={() => setOverviewRowOpen(true)}>View Info</button>
+                    </div>}
             </div>
             <div className={cx(styles.filmItem__title, styles.filmTitle)}>
                 <span className={cx(styles.filmItem__title__name, styles.filmName)}>{title}</span>
