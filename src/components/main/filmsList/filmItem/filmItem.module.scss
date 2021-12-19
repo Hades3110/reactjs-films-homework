@@ -107,6 +107,30 @@
         &__hover {
             display: none;
         }
+        &__hover__overview {
+            height: 380px;
+            align-items: flex-start;
+            justify-content: flex-start;
+            padding: 1em;
+            background-color: rgba(39, 39, 39, 0.842);
+            img {
+                cursor: pointer;
+                display: block;
+                width: 10%;
+                border-radius: 5px;
+                &:hover {
+                    background-color: #5db9e5;
+                }
+            }
+            div {
+                height: calc(380px - 4em);
+                color: white;
+                text-align: justify;
+                margin: 0.5em 0;
+                padding-right: 0.7em;
+                overflow: scroll;
+            }
+        }
         &:hover {
             .filmImage__hover {
                 position: absolute;
@@ -136,26 +160,6 @@
                         background-color: #5db9e5;
                         border: none;
                     }
-                }
-            }
-            .filmImage__hover__overview {
-                align-items: flex-start;
-                justify-content: flex-start;
-                padding: 1em;
-                img {
-                    cursor: pointer;
-                    display: block;
-                    width: 10%;
-                    border-radius: 5px;
-                    &:hover {
-                        background-color: #5db9e5;
-                    }
-                }
-                div {
-                    color: white;
-                    text-align: justify;
-                    padding: 1em 0;
-                    overflow: scroll;
                 }
             }
         }
