@@ -15,23 +15,23 @@ const Video = () => {
     const id = useSelector((state: ActionTypeInterface) => state.videoPlayer.id)
 
     useEffect(() => {
-        if (id) getFilmVideo(id).then(res => setKey(res.results[1].key))
+        if (id) getFilmVideo(id).then(res => setKey(res.results[0].key))
     })
-    console.log(id)
+    console.log(key)
 
     return (<>
         {watch ? <div className={styles.video} onClick={() => {
             dispatch(changeVideoWindow(false, 0))
         }
         }>
-            <ReactPlayer
+            {key ? <><ReactPlayer
                 className={styles.player}
                 url={`https://www.youtube.com/watch?v=${key}`}
                 controls={true}
                 width={'60%'}
                 height={'70vh'}
-            />
-            <div className={styles.close}>&#x2715;</div>
+            /> <div className={styles.close}>&#x2715;</div>
+            </> : <div className={styles.notFound}><div>Video is not found</div><button>Close</button></div>}
         </div> : ''}
     </>)
 }
