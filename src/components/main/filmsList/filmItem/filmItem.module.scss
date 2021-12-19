@@ -113,16 +113,16 @@
             justify-content: flex-start;
             padding: 1em;
             background-color: rgba(39, 39, 39, 0.842);
-            img {
+            .close {
+                display: inline-block;
                 cursor: pointer;
-                display: block;
-                width: 10%;
-                border-radius: 5px;
+                color: white;
+                font-size: 30px;
                 &:hover {
-                    background-color: #5db9e5;
+                    color: #5db9e5;
                 }
             }
-            div {
+            .text {
                 height: calc(380px - 4em);
                 color: white;
                 text-align: justify;

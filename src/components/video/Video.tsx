@@ -5,7 +5,6 @@ import { ActionTypeInterface } from "../../global"
 import { changeVideoWindow } from "../../redux/filmVideoPlay/action"
 import { getFilmVideo } from "../../services/filmService"
 import styles from './video.module.scss'
-import closeIcon from '/public/assets/icon_white_close.png'
 
 const Video = () => {
 
@@ -32,7 +31,7 @@ const Video = () => {
                 width={'60%'}
                 height={'70vh'}
             />
-            <img src={closeIcon} alt="" />
+            <div className={styles.close}>&#x2715;</div>
         </div> : ''}
     </>)
 }

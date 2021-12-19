@@ -25,7 +25,9 @@ const FilmItem = ({ id, title, image, rate, overview, filmGenres, sortType = tru
         <div className={sortType ? cx(styles.filmItem, styles.row) : cx(styles.filmItem, styles.column)}>
             <div className={styles.filmImage} style={{ backgroundImage: `url(${imageUrl})` }}>
                 {overviewRowOpen ? <div className={styles.filmImage__hover__overview}>
-                    <img src={closeIcon} alt="" onClick={() => setOverviewRowOpen(false)} /><div>{overview}</div>
+                    {/* <img src={closeIcon} alt="" onClick={() => setOverviewRowOpen(false)} /> */}
+                    <div className={styles.close} onClick={() => setOverviewRowOpen(false)}>&#x2715;</div>
+                    <div className={styles.text}>{overview}</div>
                 </div> :
                     <div className={styles.filmImage__hover}>
                         <img
