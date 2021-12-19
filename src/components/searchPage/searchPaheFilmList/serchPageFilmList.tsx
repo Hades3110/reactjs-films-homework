@@ -54,6 +54,7 @@ const SearchPageFilmList = () => {
                                     return (
                                         <FilmItem
                                             key={uniqid()}
+                                            id={el.id}
                                             title={el.title ?? 'Name not found'}
                                             image={el.poster_path}
                                             rate={el.vote_average}

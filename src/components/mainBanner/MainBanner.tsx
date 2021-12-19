@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import { FilmInfoInterface, GenreInterface, getFilmVideo, getHeadFilm } from '../../services/filmService'
+import { FilmInfoInterface, GenreInterface, getHeadFilm } from '../../services/filmService'
 import StarRatings from 'react-star-ratings'
 import styles from './mainBanner.module.scss'
-import ReactPlayer from 'react-player'
+import Video from '../video/Video'
+import { useDispatch, useSelector } from 'react-redux'
+import { ActionTypeInterface } from '../../global'
+import { changeVideoWindow } from '../../redux/filmVideoPlay/action'
 
 const initialState: FilmInfoInterface = {
     id: 0,
@@ -22,31 +25,18 @@ const MainBanner: React.FC = () => {
 
     const [filmInfo, setFilmInfo] = useState<FilmInfoInterface>(initialState)
     const [overview, setOverview] = useState<boolean>(false)
-    const [watch, setWatch] = useState<boolean>(false)
-    const [videoKey, setVideoKey] = useState<string>('')
+
+    const dispatch = useDispatch();
 
     useEffect(() => {
         getHeadFilm().then(res => setFilmInfo(res))
-        if (filmInfo.id) getFilmVideo(filmInfo.id).then(res => setVideoKey(res.results[0].key))
-    }, [filmInfo.id])
+    }, [])
 
     const bgImage: string = filmInfo.backdrop_path
     const vote = filmInfo.vote_average ? +(filmInfo.vote_average / 2).toFixed(1) : 0
     const runtime = `${~~(filmInfo.runtime / 60)}h  ${filmInfo.runtime % 60}m`
 
     return (<>
-        {watch ? <div className={styles.video} onClick={() => {
-            setWatch(false)
-        }
-        }>
-            <ReactPlayer
-                className={styles.player}
-                url={`https://www.youtube.com/watch?v=${videoKey}`}
-                controls={true}
-                width={'60%'}
-                height={'70vh'}
-            />
-        </div> : ''}
         <div className={styles.majorFilm} style={{
             backgroundImage: bgImage ? `url('https://image.tmdb.org/t/p/original${bgImage}')` : ''
         }}>
@@ -70,12 +60,13 @@ const MainBanner: React.FC = () => {
                             numberOfStars={5}
                             name='rating'
                             starDimension={'26px'}
+
                         />
                         <div className={styles.infoAndRating__ratingAndBtn__rating__num}>{vote}</div>
                     </div>
                     <div className={styles.infoAndRating__ratingAndBtn__btns}>
                         <button className={styles.infoAndRating__ratingAndBtn__btns__watch} onClick={() => {
-                            setWatch(true)
+                            dispatch(changeVideoWindow(true, filmInfo.id))
                         }
                         }>Watch now</button>
                         <button id={overview ? styles.btnView : ''} onClick={() => setOverview(!overview)}>View Info</button>

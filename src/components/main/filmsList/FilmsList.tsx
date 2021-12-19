@@ -15,6 +15,7 @@ import spinner from '/public/assets/spinner.gif'
 import errorMassage from '/public/assets/error.gif'
 import './filmList.scss'
 
+
 const FilmsList = () => {
 
     const [filmArr, setFilmArr] = useState<FilmInterface[]>([])
@@ -52,6 +53,7 @@ const FilmsList = () => {
                                     <FilmItem
                                         sortType={sortType}
                                         key={uniqid()}
+                                        id={el.id}
                                         title={el.title ?? 'Name not found'}
                                         image={el.poster_path}
                                         rate={el.vote_average}
