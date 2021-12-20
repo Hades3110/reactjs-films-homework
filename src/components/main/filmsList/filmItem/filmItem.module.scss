@@ -129,6 +129,19 @@
                 margin: 0.5em 0;
                 padding-right: 0.7em;
                 overflow: scroll;
+                &::-webkit-scrollbar {
+                    width: 5px;
+                }
+                &::-webkit-scrollbar-thumb {
+                    background: #8e8e8f;
+                    border-radius: 2px;
+                }
+                &::-webkit-scrollbar-corner {
+                    display: none;
+                }
+                &::-webkit-scrollbar-thumb:hover {
+                    background: #5db9e5;
+                }
             }
         }
         &:hover {
