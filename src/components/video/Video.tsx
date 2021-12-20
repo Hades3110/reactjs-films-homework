@@ -8,7 +8,7 @@ import styles from './video.module.scss'
 
 const Video = () => {
 
-    const [key, setKey] = useState<string>('')
+    const [key, setKey] = useState<string>(' ')
 
     const dispatch = useDispatch()
     const watch = useSelector((state: ActionTypeInterface) => state.videoPlayer.watch)
