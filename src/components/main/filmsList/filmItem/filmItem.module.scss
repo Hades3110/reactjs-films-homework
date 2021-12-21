@@ -37,11 +37,11 @@
     display: flex;
     flex-flow: column wrap;
     align-content: flex-start;
-    height: 250px;
+    height: 300px;
     .filmImage {
         width: 13%;
-        height: 250px;
-        background-size: contain;
+        height: 300px;
+        background-size: cover;
         background-repeat: no-repeat;
         border-radius: 5px 0 0 5px;
         &__hover {
@@ -50,8 +50,8 @@
         &:hover {
             .filmImage__hover {
                 position: absolute;
-                width: 11.6%;
-                height: 250px;
+                width: 11.7%;
+                height: 300px;
                 background-color: rgba(39, 39, 39, 0.842);
                 border-radius: 5px 0 0 5px;
                 display: flex;
@@ -147,7 +147,7 @@
         &:hover {
             .filmImage__hover {
                 position: absolute;
-                width: 17.15%;
+                width: calc((90% - 4em) / 5);
                 height: 380px;
                 background-color: rgba(39, 39, 39, 0.842);
                 border-radius: 5px 5px 0 0;

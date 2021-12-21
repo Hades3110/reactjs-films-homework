@@ -10,7 +10,6 @@ import {
     getGenres,
     GenreInterface,
 } from '../../../services/filmService'
-import uniqid from 'uniqid'
 import spinner from '/public/assets/spinner.gif'
 import errorMassage from '/public/assets/error.gif'
 import './filmList.scss'
@@ -31,12 +30,25 @@ const FilmsList = () => {
 
         getFilmlist(categories, pageCounter)
             .then(res => {
-                pageCounter > 1 ? setFilmArr([...filmArr, ...res.results.filter(film => film.poster_path && film.title)])
-                    : setFilmArr(res.results.filter(film => film.poster_path && film.title))
+                let result = []
+                if (pageCounter > 1) {
+                    result = [...filmArr, ...res.results].filter((film, index, self) =>
+                        self.findIndex((t) => (
+                            t.id === film.id
+                        ))
+                    )
+                } else {
+                    result = res.results.filter((film, index, self) =>
+                        self.findIndex((t) => (
+                            t.id === film.id
+                        ))
+                    )
+                }
+                setFilmArr(result.filter(film => film.poster_path && film.title))
                 dispatch(changeLoading(true))
             })
     }, [categories, pageCounter])
-
+    console.log(filmArr)
     useEffect(() => {
         getGenres()
             .then(res => setGenres(res.genres))
@@ -52,12 +64,12 @@ const FilmsList = () => {
                                 return (
                                     <FilmItem
                                         sortType={sortType}
-                                        key={uniqid()}
+                                        key={el.id}
                                         id={el.id}
-                                        title={el.title ?? 'Name not found'}
+                                        title={el.title === '' ? 'NAME NOT FOUND' : el.title}
                                         image={el.poster_path}
                                         rate={el.vote_average}
-                                        overview={el.overview ?? 'No description'}
+                                        overview={el.overview === '' ? 'No Description' : el.overview}
                                         filmGenres={el.genre_ids}
                                         genres={genres}
                                     />
