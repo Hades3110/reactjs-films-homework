@@ -1,0 +1,46 @@
+.video {
+    position: fixed;
+    z-index: 2;
+    top: 10vh;
+    width: 100%;
+    height: 90vh;
+    padding-top: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    background-color: rgba(39, 39, 39, 0.767);
+    .player {
+        display: block;
+    }
+    .notFound {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: #5db9e5;
+        font-size: 60px;
+        button {
+            color: #5db9e5;
+            margin-top: 2em;
+            padding: 0.5em 1em;
+            background: none;
+            border: 1px white solid;
+            font-size: 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            &:hover {
+                background-color: #5db9e5;
+                color: white;
+                border: none;
+            }
+        }
+    }
+    .close {
+        margin-left: 10px;
+        font-size: 30px;
+        cursor: pointer;
+        color: white;
+        &:hover {
+            color: #5db9e5;
+        }
+    }
+}

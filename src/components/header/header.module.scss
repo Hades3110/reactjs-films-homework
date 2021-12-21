@@ -1,11 +1,14 @@
 header {
     width: 100%;
+    height: max(10vh, 65px);
     position: fixed;
+    z-index: 2;
     top: 0;
-    padding: 1% 5% 1%;
+    padding: 0% 5%;
     background: linear-gradient(rgb(34, 34, 34), rgba(37, 37, 37, 0.795));
     display: flex;
     justify-content: space-between;
+    align-items: center;
     color: #efece9;
     a {
         color: white;
