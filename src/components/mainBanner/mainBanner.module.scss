@@ -7,11 +7,13 @@
     display: flex;
     align-items: flex-end;
     background-size: cover;
+    background-attachment: fixed;
 }
 .infoAndRating {
-    width: 90%;
+    width: 100%;
     margin: 0 auto;
-    padding-bottom: 2%;
+    padding: 0 5% 2% 5%;
+    background: linear-gradient(rgba(0, 0, 0, 0), rgba(37, 37, 37, 0.582), rgba(34, 34, 34, 0.911));
     display: flex;
     flex-direction: column;
     h1 {
@@ -29,7 +31,6 @@
             display: flex;
             flex-wrap: wrap;
             list-style: none;
-            justify-content: space-between;
             text-shadow: 0 0 5px black;
             li {
                 margin-right: 1em;
@@ -37,11 +38,27 @@
         }
         .overview {
             width: 20%;
+            height: 150px;
             padding: 0.5em 1em;
             background-color: rgba(34, 34, 34, 0.733);
             border-radius: 5px;
             line-height: 1.4em;
             font-size: 15px;
+            overflow: scroll;
+            transition: opacity 0.5s;
+            &::-webkit-scrollbar {
+                width: 5px;
+            }
+            &::-webkit-scrollbar-thumb {
+                background: #8e8e8f;
+                border-radius: 2px;
+            }
+            &::-webkit-scrollbar-corner {
+                display: none;
+            }
+            &::-webkit-scrollbar-thumb:hover {
+                background: #5db9e5;
+            }
         }
     }
     &__ratingAndBtn {
@@ -70,7 +87,7 @@
             width: 20em;
             button {
                 width: 47%;
-                padding: calc(0.5em - 2px) 0.5em;
+                padding: 0.5em;
                 color: #efece9;
                 font-size: 20px;
                 border-radius: 5px;
@@ -80,9 +97,12 @@
             }
             #btnView {
                 background: none;
-                padding: 0.5em;
                 background: linear-gradient(rgb(39, 39, 39), rgba(255, 255, 255, 0));
             }
         }
     }
+}
+.spinner {
+    display: block;
+    margin: 12vh auto 0 auto;
 }

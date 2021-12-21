@@ -27,7 +27,6 @@ const FilmsList = () => {
     const isLoaded = useSelector((state: ActionTypeInterface) => state.movieLoader.isLoaded)
 
     useEffect(() => {
-
         getFilmlist(categories, pageCounter)
             .then(res => {
                 let result = []
@@ -44,11 +43,11 @@ const FilmsList = () => {
                         ))
                     )
                 }
+                result.length -= result.length % 5
                 setFilmArr(result.filter(film => film.poster_path && film.title))
                 dispatch(changeLoading(true))
             })
     }, [categories, pageCounter])
-    console.log(filmArr)
     useEffect(() => {
         getGenres()
             .then(res => setGenres(res.genres))
@@ -83,7 +82,8 @@ const FilmsList = () => {
                         }}>
                         <button className='btn__more'>Load More</button>
                     </div>
-                </>) : <img src={spinner} className='spinner' />}
+                </>) : <img src={spinner} className='spinner' />
+            }
         </>
     )
 }

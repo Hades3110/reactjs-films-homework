@@ -7,15 +7,15 @@ import styles from './filmItem.module.scss'
 import { useDispatch } from 'react-redux'
 import { changeVideoWindow } from '../../../../redux/filmVideoPlay/action'
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 const FilmItem = ({ id, title, image, rate, overview, filmGenres, sortType = true, genres }: FilmPropertyInterface) => {
 
-    const [overviewRowOpen, setOverviewRowOpen] = useState<boolean>(false)
+    const [isColumn, setIsColumn] = useState<boolean>(false)
 
     const genreName: GenreInterface[] = genres.filter((el: GenreInterface) => {
         return filmGenres.find((id: number) => id === el.id)
     })
-
     const dispatch = useDispatch()
     const imageUrl = image ? `https://image.tmdb.org/t/p/original/${image}` : imageNorFound
     const vote = rate ? +(rate / 2).toFixed(1) : 0
@@ -23,10 +23,12 @@ const FilmItem = ({ id, title, image, rate, overview, filmGenres, sortType = tru
     return (
         <div className={sortType ? cx(styles.filmItem, styles.row) : cx(styles.filmItem, styles.column)}>
             <div className={styles.filmImage} style={{ backgroundImage: `url(${imageUrl})` }}>
-                {overviewRowOpen ? <div className={styles.filmImage__hover__overview}>
-                    {/* <img src={closeIcon} alt="" onClick={() => setOverviewRowOpen(false)} /> */}
-                    <div className={styles.close} onClick={() => setOverviewRowOpen(false)}>&#x2715;</div>
+                {isColumn ? <div className={styles.filmImage__hover__overview}>
+                    <div className={styles.close} onClick={() => setIsColumn(false)}>&#x2715;</div>
                     <div className={styles.text}>{overview}</div>
+                    <Link to={`/movie/${id}`}>
+                        <button>More</button>
+                    </Link>
                 </div> :
                     <div className={styles.filmImage__hover}>
                         <img
@@ -35,7 +37,7 @@ const FilmItem = ({ id, title, image, rate, overview, filmGenres, sortType = tru
                             className={styles.filmImage__hover__icon}
                             onClick={() => dispatch(changeVideoWindow(true, id))}
                         />
-                        <button className={styles.filmImage__hover__button} onClick={() => setOverviewRowOpen(true)}>View Info</button>
+                        <button className={styles.filmImage__hover__button} onClick={() => setIsColumn(true)}>View Info</button>
                     </div>}
             </div>
             <div className={cx(styles.filmItem__title, styles.filmTitle)}>

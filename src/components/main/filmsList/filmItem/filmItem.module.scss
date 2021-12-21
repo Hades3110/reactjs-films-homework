@@ -109,12 +109,14 @@
         }
         &__hover__overview {
             height: 380px;
-            align-items: flex-start;
-            justify-content: flex-start;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             padding: 1em;
             background-color: rgba(39, 39, 39, 0.842);
             .close {
                 display: inline-block;
+                align-self: flex-start;
                 cursor: pointer;
                 color: white;
                 font-size: 30px;
@@ -123,7 +125,7 @@
                 }
             }
             .text {
-                height: calc(380px - 4em);
+                height: calc(320px - 4em);
                 color: white;
                 text-align: justify;
                 margin: 0.5em 0;
@@ -141,6 +143,20 @@
                 }
                 &::-webkit-scrollbar-thumb:hover {
                     background: #5db9e5;
+                }
+            }
+            button {
+                padding: 0.3em 2em;
+                color: white;
+                font-size: 20px;
+                border-radius: 5px;
+                cursor: pointer;
+                background: none;
+                border: 1px white solid;
+                &:hover {
+                    padding: calc(0.3em + 1px) 2em;
+                    background-color: #5db9e5;
+                    border: none;
                 }
             }
         }

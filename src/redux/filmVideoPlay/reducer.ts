@@ -2,7 +2,7 @@ import { VIDEO_PLAY } from './action'
 
 const initialState = {
     watch: false,
-    key: ''
+    id: 0
 }
 
 const videoPlayReducer = (state = initialState, action: any) => {

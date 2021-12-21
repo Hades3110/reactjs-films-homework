@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { FilmInfoInterface, GenreInterface, getHeadFilm } from '../../services/filmService'
 import StarRatings from 'react-star-ratings'
 import styles from './mainBanner.module.scss'
-import Video from '../video/Video'
 import { useDispatch, useSelector } from 'react-redux'
-import { ActionTypeInterface } from '../../global'
 import { changeVideoWindow } from '../../redux/filmVideoPlay/action'
+import { ActionTypeInterface } from '../../global'
+import spinner from '/public/assets/spinner.gif'
+import { changeLoading } from '../../redux/loading/action'
 
 const initialState: FilmInfoInterface = {
     id: 0,
@@ -21,23 +22,26 @@ const initialState: FilmInfoInterface = {
     overview: ''
 }
 
-const MainBanner: React.FC = () => {
+const MainBanner = ({ id }: { id: number }) => {
 
     const [filmInfo, setFilmInfo] = useState<FilmInfoInterface>(initialState)
-    const [overview, setOverview] = useState<boolean>(false)
+    const [isOverview, setIsOverview] = useState<boolean>(false)
+
 
     const dispatch = useDispatch();
+    const isLoaded = useSelector((state: ActionTypeInterface) => state.movieLoader.isLoaded)
 
     useEffect(() => {
-        getHeadFilm().then(res => setFilmInfo(res))
-    }, [])
+        getHeadFilm(id).then(res => setFilmInfo(res))
+        dispatch(changeLoading(true))
+    }, [id])
 
     const bgImage: string = filmInfo.backdrop_path
     const vote = filmInfo.vote_average ? +(filmInfo.vote_average / 2).toFixed(1) : 0
     const runtime = `${~~(filmInfo.runtime / 60)}h  ${filmInfo.runtime % 60}m`
 
     return (<>
-        <div className={styles.majorFilm} style={{
+        {isLoaded ? <div className={styles.majorFilm} style={{
             backgroundImage: bgImage ? `url('https://image.tmdb.org/t/p/original${bgImage}')` : ''
         }}>
             <div className={styles.infoAndRating}>
@@ -50,7 +54,7 @@ const MainBanner: React.FC = () => {
                             <li>{runtime}</li>
                         </ul>
                     </div>
-                    <div className={styles.overview} style={overview ? { display: 'block' } : { display: 'none' }}>{filmInfo.overview}</div>
+                    <div className={styles.overview} style={isOverview ? { opacity: 1 } : { opacity: 0 }}>{filmInfo.overview}</div>
                 </div>
                 <div className={styles.infoAndRating__ratingAndBtn}>
                     <div className={styles.infoAndRating__ratingAndBtn__rating}>
@@ -66,14 +70,14 @@ const MainBanner: React.FC = () => {
                     </div>
                     <div className={styles.infoAndRating__ratingAndBtn__btns}>
                         <button className={styles.infoAndRating__ratingAndBtn__btns__watch} onClick={() => {
-                            dispatch(changeVideoWindow(true, filmInfo.id))
+                            dispatch(changeVideoWindow(true, id))
                         }
                         }>Watch now</button>
-                        <button id={overview ? styles.btnView : ''} onClick={() => setOverview(!overview)}>View Info</button>
+                        <button id={isOverview ? styles.btnView : ''} onClick={() => setIsOverview(!isOverview)}>View Info</button>
                     </div>
                 </div>
             </div>
-        </div>
+        </div> : <img src={spinner} className={styles.spinner} />}
     </>)
 }
 

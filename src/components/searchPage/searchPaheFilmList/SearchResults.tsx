@@ -8,14 +8,14 @@ import {
 } from '../../../services/filmService'
 import spinner from '/public/assets/spinner.gif'
 import { useLocation } from 'react-router'
-import styles from './searchPageFilmList.module.scss'
+import styles from './searchResults.module.scss'
 
-const SearchPageFilmList = () => {
+const Searchresults = () => {
 
     const [filmArr, setFilmArr] = useState<FilmInterface[]>([])
     const [genres, setGenres] = useState<GenreInterface[]>([])
     const [filmNotFount, setFilmNotFount] = useState<boolean>(false)
-    const [loading, setLoading] = useState<boolean>(true)
+    const [isLoaded, setIsLoading] = useState<boolean>(false)
 
     const { search } = useLocation()
     const searchParams = new URLSearchParams(search)
@@ -32,9 +32,9 @@ const SearchPageFilmList = () => {
                 if (result.length > 0) {
                     setFilmNotFount(false)
                     setFilmArr(result.filter(film => film.poster_path && film.title))
-                    setLoading(false)
+                    setIsLoading(true)
                 } else {
-                    setLoading(false)
+                    setIsLoading(true)
                     setFilmNotFount(true)
                 }
             })
@@ -47,7 +47,7 @@ const SearchPageFilmList = () => {
 
     return (
         <>
-            {loading ? <img src={spinner} className={styles.spinner} /> :
+            {isLoaded ? <img src={spinner} className={styles.spinner} /> :
                 (filmNotFount ? <div className={styles.searchErrorMassage}>There are no movies that matched your query.</div> :
                     <div className={styles.filmList}>
                         <div className='filmListRow'>
@@ -75,4 +75,4 @@ const SearchPageFilmList = () => {
     )
 }
 
-export default SearchPageFilmList
+export default Searchresults

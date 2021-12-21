@@ -52,10 +52,14 @@ export const getGenres = () => {
     return getResource(`${process.env.API_BASE}genre/movie/list${process.env.API_KEY}`)
 }
 
-export const getHeadFilm = () => {
-    return getResource(`${process.env.API_BASE}movie/561=${process.env.API_KEY}`)
+export const getHeadFilm = (id: number) => {
+    return getResource(`${process.env.API_BASE}movie/${id}=${process.env.API_KEY}`)
 }
 
 export const getFilmVideo = (id: number) => {
     return getResource(`${process.env.API_BASE}movie/${id}/videos${process.env.API_KEY}&language=en-US`)
+}
+
+export const getRecommendations = (id: number) => {
+    return getResource(`${process.env.API_BASE}movie/${id}/recommendations${process.env.API_KEY}&language=en-US`)
 }

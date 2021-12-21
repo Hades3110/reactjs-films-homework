@@ -1,11 +1,7 @@
 import { useSelector } from 'react-redux'
-import { ActionFromReducer } from 'redux'
 import { ActionTypeInterface } from '../../global'
-import Footer from '../footer/Footer'
-import Header from '../header/Header'
 import Main from '../main/Main'
 import MainBanner from '../mainBanner/MainBanner'
-import Video from '../video/Video'
 
 const GeneralPage = () => {
 
@@ -13,11 +9,8 @@ const GeneralPage = () => {
 
     return (
         <>
-            <Header />
-            {watch ? <Video /> : ''}
-            <MainBanner />
+            <MainBanner id={561} />
             <Main />
-            <Footer />
         </>
     )
 }
