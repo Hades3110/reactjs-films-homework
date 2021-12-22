@@ -34,7 +34,7 @@ const Searchresults = () => {
                     setFilmArr(result.filter(film => film.poster_path && film.title))
                     setIsLoading(true)
                 } else {
-                    setIsLoading(false)
+                    setIsLoading(true)
                     setFilmNotFount(true)
                 }
             })
@@ -47,29 +47,28 @@ const Searchresults = () => {
 
     return (
         <>
-            {isLoaded ? <img src={spinner} className={styles.spinner} /> :
-                (filmNotFount ? <div className={styles.searchErrorMassage}>There are no movies that matched your query.</div> :
-                    <div className={styles.filmList}>
-                        <div className='filmListRow'>
-                            {
-                                filmArr.map((el: FilmInterface) => {
-                                    return (
-                                        <FilmItem
-                                            key={el.id}
-                                            id={el.id}
-                                            title={el.title === '' ? 'NAME NOT FOUND' : el.title}
-                                            image={el.poster_path}
-                                            rate={el.vote_average}
-                                            overview={el.overview === '' ? 'No Description' : el.overview}
-                                            filmGenres={el.genre_ids}
-                                            genres={genres}
-                                        />
-                                    )
-                                })
-                            }
-                        </div>
+            {isLoaded ? (filmNotFount ? <div className={styles.searchErrorMassage}>There are no movies that matched your query.</div> :
+                <div className={styles.filmList}>
+                    <div className='filmListRow'>
+                        {
+                            filmArr.map((el: FilmInterface) => {
+                                return (
+                                    <FilmItem
+                                        key={el.id}
+                                        id={el.id}
+                                        title={el.title === '' ? 'NAME NOT FOUND' : el.title}
+                                        image={el.poster_path}
+                                        rate={el.vote_average}
+                                        overview={el.overview === '' ? 'No Description' : el.overview}
+                                        filmGenres={el.genre_ids}
+                                        genres={genres}
+                                    />
+                                )
+                            })
+                        }
                     </div>
-                )
+                </div>
+            ) : <img src={spinner} className={styles.spinner} />
             }
         </>
     )
