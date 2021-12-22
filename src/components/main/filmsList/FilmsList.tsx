@@ -3,7 +3,6 @@ import { ActionTypeInterface } from '../../../global'
 import FilmItem from './filmItem/FilmItem'
 import { useSelector, useDispatch } from 'react-redux'
 import { changeFilmCategoriesAndCount } from '../../../redux/filmListCountAndCategories/action'
-import { changeLoading } from '../../../redux/loading/action'
 import {
     FilmInterface,
     getFilmlist,
@@ -19,12 +18,13 @@ const FilmsList = () => {
 
     const [filmArr, setFilmArr] = useState<FilmInterface[]>([])
     const [genres, setGenres] = useState<GenreInterface[]>([])
+    const [isLoaded, setIsLoaded] = useState<boolean>(false)
+    const [newItemLoading, setNewItemLoading] = useState<boolean>(false)
 
     const dispatch = useDispatch()
     const pageCounter = useSelector((state: ActionTypeInterface) => state.pageCounter.count)
     const categories = useSelector((state: ActionTypeInterface) => state.pageCounter.categories)
     const sortType = useSelector((state: ActionTypeInterface) => state.sortType.type)
-    const isLoaded = useSelector((state: ActionTypeInterface) => state.movieLoader.isLoaded)
 
     useEffect(() => {
         getFilmlist(categories, pageCounter)
@@ -36,6 +36,7 @@ const FilmsList = () => {
                             t.id === film.id
                         ))
                     )
+                    setNewItemLoading(false)
                 } else {
                     result = res.results.filter((film, index, self) =>
                         self.findIndex((t) => (
@@ -45,13 +46,15 @@ const FilmsList = () => {
                 }
                 result.length -= result.length % 5
                 setFilmArr(result.filter(film => film.poster_path && film.title))
-                dispatch(changeLoading(true))
+                setIsLoaded(true)
             })
     }, [categories, pageCounter])
     useEffect(() => {
         getGenres()
             .then(res => setGenres(res.genres))
     }, [])
+
+    console.log(filmArr)
 
     return (
         <>
@@ -79,8 +82,9 @@ const FilmsList = () => {
                     <div className='btn'
                         onClick={() => {
                             dispatch(changeFilmCategoriesAndCount(pageCounter + 1, categories))
+                            setNewItemLoading(true)
                         }}>
-                        <button className='btn__more'>Load More</button>
+                        <button className='btn__more' disabled={newItemLoading}>{newItemLoading ? '...' : 'Load More'}</button>
                     </div>
                 </>) : <img src={spinner} className='spinner' />
             }

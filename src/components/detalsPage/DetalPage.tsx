@@ -1,6 +1,6 @@
 import { useParams } from "react-router"
 import MainBanner from "../mainBanner/MainBanner"
-import RecFilm from "./recFilms/recFilm"
+import RecFilm from "./moreLikeThis/MoreLikeThis"
 
 const DetalsPage = () => {
     const { id } = useParams()

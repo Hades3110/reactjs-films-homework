@@ -7,7 +7,7 @@ import styles from './filmItem.module.scss'
 import { useDispatch } from 'react-redux'
 import { changeVideoWindow } from '../../../../redux/filmVideoPlay/action'
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router'
 
 const FilmItem = ({ id, title, image, rate, overview, filmGenres, sortType = true, genres }: FilmPropertyInterface) => {
 
@@ -20,24 +20,32 @@ const FilmItem = ({ id, title, image, rate, overview, filmGenres, sortType = tru
     const imageUrl = image ? `https://image.tmdb.org/t/p/original/${image}` : imageNorFound
     const vote = rate ? +(rate / 2).toFixed(1) : 0
 
+    const navigate = useNavigate()
+
     return (
-        <div className={sortType ? cx(styles.filmItem, styles.row) : cx(styles.filmItem, styles.column)}>
+        <div className={sortType ? cx(styles.filmItem, styles.row) : cx(styles.filmItem, styles.column)} onClick={() => navigate(`/movie/${id}`)}>
             <div className={styles.filmImage} style={{ backgroundImage: `url(${imageUrl})` }}>
                 {isColumn ? <div className={styles.filmImage__hover__overview}>
-                    <div className={styles.close} onClick={() => setIsColumn(false)}>&#x2715;</div>
+                    <div className={styles.close} onClick={(event) => {
+                        event.stopPropagation()
+                        setIsColumn(false)
+                    }}>&#x2715;</div>
                     <div className={styles.text}>{overview}</div>
-                    <Link to={`/movie/${id}`}>
-                        <button>More</button>
-                    </Link>
+                    <button>More</button>
                 </div> :
                     <div className={styles.filmImage__hover}>
                         <img
                             src={iconPlay}
                             alt="Icon Play"
                             className={styles.filmImage__hover__icon}
-                            onClick={() => dispatch(changeVideoWindow(true, id))}
-                        />
-                        <button className={styles.filmImage__hover__button} onClick={() => setIsColumn(true)}>View Info</button>
+                            onClick={(event) => {
+                                event.stopPropagation()
+                                dispatch(changeVideoWindow(true, id))
+                            }} />
+                        <button className={styles.filmImage__hover__button} onClick={(event) => {
+                            event.stopPropagation()
+                            setIsColumn(true)
+                        }}>View Info</button>
                     </div>}
             </div>
             <div className={cx(styles.filmItem__title, styles.filmTitle)}>

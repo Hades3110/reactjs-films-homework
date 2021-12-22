@@ -34,7 +34,7 @@ const Searchresults = () => {
                     setFilmArr(result.filter(film => film.poster_path && film.title))
                     setIsLoading(true)
                 } else {
-                    setIsLoading(true)
+                    setIsLoading(false)
                     setFilmNotFount(true)
                 }
             })

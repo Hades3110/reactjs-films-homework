@@ -1,21 +1,21 @@
-.filmListRow{
+.filmListRow {
     width: 100%;
     margin-top: 2%;
     display: grid;
-    grid-template-columns: repeat(5 , 1fr);
+    grid-template-columns: repeat(5, 1fr);
     grid-gap: 1em;
 }
-.filmListColumn{
+.filmListColumn {
     width: 100%;
     margin-top: 2%;
     display: grid;
     grid-template-columns: 1;
     grid-gap: 2em;
 }
-.btn{
+.btn {
     width: 15%;
     margin: 4% auto;
-    &__more{
+    &__more {
         width: 100%;
         height: 2em;
         font-size: 20px;
@@ -24,13 +24,16 @@
         border-radius: 5px;
         background: none;
         cursor: pointer;
-        &:hover{
+        &:hover {
             background-color: #5db9e5;
             color: white;
         }
     }
 }
-.spinner{
+.disabled {
+    background-color: #a4b5bd;
+}
+.spinner {
     display: block;
     margin: 0 auto;
 }
@@ -38,8 +41,8 @@
     width: 100%;
     background-color: #fff;
     margin-top: 1em;
-    img{
+    img {
         display: block;
-        margin: 0 auto; 
+        margin: 0 auto;
     }
 }

@@ -36,7 +36,10 @@ const getResource = (url: string): Promise<FilmInfoInterface> => {
     return new Promise((resolve, reject) => {
         fetch(url)
             .then(res => resolve(res.json()))
-            .catch(err => reject(err))
+            .catch(err => {
+                reject(err)
+                console.log(1)
+            })
     })
 }
 

@@ -4,9 +4,7 @@ import StarRatings from 'react-star-ratings'
 import styles from './mainBanner.module.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import { changeVideoWindow } from '../../redux/filmVideoPlay/action'
-import { ActionTypeInterface } from '../../global'
 import spinner from '/public/assets/spinner.gif'
-import { changeLoading } from '../../redux/loading/action'
 
 const initialState: FilmInfoInterface = {
     id: 0,
@@ -26,14 +24,14 @@ const MainBanner = ({ id }: { id: number }) => {
 
     const [filmInfo, setFilmInfo] = useState<FilmInfoInterface>(initialState)
     const [isOverview, setIsOverview] = useState<boolean>(false)
+    const [isLoaded, setIsLOaded] = useState<boolean>(false)
 
 
     const dispatch = useDispatch();
-    const isLoaded = useSelector((state: ActionTypeInterface) => state.movieLoader.isLoaded)
 
     useEffect(() => {
         getHeadFilm(id).then(res => setFilmInfo(res))
-        dispatch(changeLoading(true))
+        setIsLOaded(true)
     }, [id])
 
     const bgImage: string = filmInfo.backdrop_path

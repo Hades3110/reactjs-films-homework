@@ -1,6 +1,7 @@
 .filmItem {
     box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.15);
     border-radius: 5px;
+    cursor: pointer;
     &__image {
         object-fit: contain;
     }
