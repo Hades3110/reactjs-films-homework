@@ -4,10 +4,10 @@ import {
     Route,
     Routes,
 } from 'react-router-dom'
-import GeneralPage from '../components/geneeralPage/GeneralPage'
+import GeneralPage from '../components/generalPage/GeneralPage'
 import Header from '../components/header/Header'
 import Footer from '../components/footer/Footer'
-import DetalsPage from '../components/detalsPage/DetalPage'
+import DetalsPage from '../components/detailsPage/DetailPage'
 import Video from '../components/video/Video'
 import { useSelector } from 'react-redux'
 import { ActionTypeInterface } from '../global'
