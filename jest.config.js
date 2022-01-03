@@ -1,6 +1,6 @@
 module.exports = {
-  verbose: true,
-  preset: 'ts-jest',
-  setupFilesAfterEnv: ["@testing-library/jest-dom/extend-expect"],
-  testEnvironment: "jsdom"
+    verbose: true,
+    preset: 'ts-jest',
+    setupFilesAfterEnv: ["@testing-library/jest-dom/extend-expect"],
+    testEnvironment: "jsdom"
 };
