@@ -3,6 +3,7 @@ interface FilmApiInterface {
     results: FilmInterface[]
     total_pages: number
     total_results: number
+    cast: CreditInterface[]
 }
 
 export interface FilmInterface {
@@ -29,6 +30,15 @@ export interface FilmInfoInterface extends FilmApiInterface {
     vote_average: number
     runtime: number
     overview: string
+    homepage: string
+}
+
+export interface CreditInterface {
+    character: string
+    gender: number
+    id?: number
+    name: string
+    profile_path: string
 }
 
 // get API
@@ -38,7 +48,6 @@ const getResource = (url: string): Promise<FilmInfoInterface> => {
             .then(res => resolve(res.json()))
             .catch(err => {
                 reject(err)
-                console.log(1)
             })
     })
 }
@@ -65,4 +74,8 @@ export const getFilmVideo = (id: number) => {
 
 export const getRecommendations = (id: number) => {
     return getResource(`${process.env.API_BASE}movie/${id}/recommendations${process.env.API_KEY}&language=en-US`)
+}
+
+export const getMovieCredits = (id: number) => {
+    return getResource(`${process.env.API_BASE}movie/${id}/credits${process.env.API_KEY}&language=en-US`)
 }

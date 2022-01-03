@@ -17,7 +17,9 @@ const initialState: FilmInfoInterface = {
     total_results: 1,
     vote_average: 1,
     runtime: 1,
-    overview: ''
+    overview: '',
+    homepage: '',
+    cast: []
 }
 
 const MainBanner = ({ id }: { id: number }) => {
@@ -25,7 +27,6 @@ const MainBanner = ({ id }: { id: number }) => {
     const [filmInfo, setFilmInfo] = useState<FilmInfoInterface>(initialState)
     const [isOverview, setIsOverview] = useState<boolean>(false)
     const [isLoaded, setIsLOaded] = useState<boolean>(false)
-
 
     const dispatch = useDispatch();
 
@@ -67,10 +68,10 @@ const MainBanner = ({ id }: { id: number }) => {
                         <div className={styles.infoAndRating__ratingAndBtn__rating__num}>{vote}</div>
                     </div>
                     <div className={styles.infoAndRating__ratingAndBtn__btns}>
-                        <button className={styles.infoAndRating__ratingAndBtn__btns__watch} onClick={() => {
-                            dispatch(changeVideoWindow(true, id))
-                        }
-                        }>Watch now</button>
+                        {filmInfo.homepage ? <a href={filmInfo.homepage} target='_blank'>
+                            <button className={styles.infoAndRating__ratingAndBtn__btns__watch}
+                            >Offical Page</button>
+                        </a> : ''}
                         <button id={isOverview ? styles.btnView : ''} onClick={() => setIsOverview(!isOverview)}>View Info</button>
                     </div>
                 </div>

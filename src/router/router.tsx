@@ -7,7 +7,7 @@ import {
 import GeneralPage from '../components/generalPage/GeneralPage'
 import Header from '../components/header/Header'
 import Footer from '../components/footer/Footer'
-import DetalsPage from '../components/detailsPage/DetailPage'
+import DetalsPage from '../components/detailsPage/DetailsPage'
 import Video from '../components/video/Video'
 import { useSelector } from 'react-redux'
 import { ActionTypeInterface } from '../global'

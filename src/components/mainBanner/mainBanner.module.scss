@@ -86,14 +86,18 @@
             justify-content: space-between;
             width: 20em;
             button {
-                width: 47%;
-                padding: 0.5em;
+                // width: 47%;
+                padding: 0.5em 1em;
                 color: #efece9;
                 font-size: 20px;
                 border-radius: 5px;
                 cursor: pointer;
                 background: #5db9e5;
                 border: none;
+                transition: background-color 1s;
+                &:first-child {
+                    width: 100%;
+                }
             }
             #btnView {
                 background: none;

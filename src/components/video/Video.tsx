@@ -16,7 +16,7 @@ const Video = () => {
 
     useEffect(() => {
         if (id) getFilmVideo(id).then(res => setKey(res.results[0].key))
-    })
+    }, [])
 
     return (<>
         {watch ? <div className={styles.video} onClick={() => {

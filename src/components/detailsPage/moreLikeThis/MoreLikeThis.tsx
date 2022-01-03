@@ -4,7 +4,7 @@ import FilmItem from '../../main/filmsList/filmItem/FilmItem'
 import styles from './moreLikeThis.module.scss'
 import spinner from '/public/assets/spinner.gif'
 
-const RecFilm = ({ id }: { id: number }) => {
+const MoreLikeThis = ({ id }: { id: number }) => {
     const [filmArr, setFilmArr] = useState<FilmInterface[]>([])
     const [genres, setGenres] = useState<GenreInterface[]>([])
     const [isFilmFound, setIsFilmFound] = useState<boolean>(true)
@@ -26,11 +26,10 @@ const RecFilm = ({ id }: { id: number }) => {
                     setIsFilmFound(false)
                 }
             })
-        window.scrollTo(0, 0)
-        // window.scrollTo({
-        //     top: 0,
-        //     behavior: "smooth"
-        // })
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        })
     }, [id])
 
     useEffect(() => {
@@ -39,9 +38,9 @@ const RecFilm = ({ id }: { id: number }) => {
     }, [])
 
     return (<>
-        <div className={styles.more}>MORE LIKE THIS</div>
         {isLoaded ?
             (isFilmFound ? <div className={styles.filmList}>
+                <div className={styles.more}>MORE LIKE THIS</div>
                 <div className='filmListRow'>
                     {
                         filmArr.map((el: FilmInterface) => {
@@ -60,11 +59,10 @@ const RecFilm = ({ id }: { id: number }) => {
                         })
                     }
                 </div>
-            </div> :
-                <div className={styles.searchErrorMassage}>There are no movies that matched your query.</div>)
+            </div> : '')
             : <img src={spinner} className={styles.spinner} />
         }
     </>)
 }
 
-export default RecFilm
+export default MoreLikeThis

@@ -1,0 +1,19 @@
+.treiler {
+    width: 68%;
+    height: calc(1012px + 2em);
+    padding: 0.5em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0px 0px 50px 10px rgba(0, 0, 0, 0.24);
+    background-color: white;
+    border-radius: 5px;
+    color: #5db9e5;
+    font-size: 25px;
+    text-align: center;
+}
+.player {
+    border-radius: 0.25rem;
+    overflow: hidden;
+    box-shadow: 0px 0px 50px 10px rgba(0, 0, 0, 0.24);
+}

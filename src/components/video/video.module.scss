@@ -11,6 +11,8 @@
     background-color: rgba(39, 39, 39, 0.767);
     .player {
         display: block;
+        border-radius: 0.25rem;
+        overflow: hidden;
     }
     .notFound {
         display: flex;

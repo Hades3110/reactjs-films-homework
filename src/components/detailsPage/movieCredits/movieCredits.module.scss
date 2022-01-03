@@ -1,0 +1,27 @@
+.creditList {
+    width: 30%;
+    padding: 0.5em 0.3em;
+    box-shadow: 0px 0px 50px 10px rgba(0, 0, 0, 0.24);
+    max-height: calc(1012px + 2em);
+    border-radius: 5px;
+    overflow: scroll;
+    color: #5db9e5;
+    font-size: 25px;
+    text-align: center;
+}
+.scroll {
+    overflow: scroll;
+    &::-webkit-scrollbar {
+        width: 5px;
+    }
+    &::-webkit-scrollbar-thumb {
+        background: #8e8e8f;
+        border-radius: 2px;
+    }
+    &::-webkit-scrollbar-corner {
+        display: none;
+    }
+    &::-webkit-scrollbar-thumb:hover {
+        background: #5db9e5;
+    }
+}
