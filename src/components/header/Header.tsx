@@ -12,13 +12,16 @@ const Header = () => {
     const dispatch = useDispatch()
 
     return <header>
-        <Link to='/'><h1>FILMS</h1></Link>
+        <Link to='/' onClick={() => {
+            setValue('')
+        }}><h1>FILMS</h1></Link>
         <form className={styles.search} onSubmit={(e) => (
             value ? (navigate(`/search?film=${value}`),
                 e.preventDefault(), dispatch(changeVideoWindow(false, 0))) : e.preventDefault()
         )}>
             <input
                 onChange={(e) => setValue(e.target.value)}
+                value={value}
             />
             <button><img src={imgSearch} alt='magnifying glass' /></button>
         </form>

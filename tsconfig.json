@@ -18,6 +18,7 @@
   },
   "include": [
     "src/**/*",
-    "src/components/header/declaration.d.ts"
+    "src/components/header/declaration.d.ts",
+    "__mocks__"
   ]
 }

@@ -11,7 +11,6 @@ const MoviCredits = ({ id }: { id: number }) => {
     useEffect(() => {
         id ? getMovieCredits(id).then(res => setCredits(res.cast)) : ''
     }, [id])
-    console.log(credits)
 
     return (
         <div className={credits.length > 0 ? cx(styles.creditList, styles.scroll) : styles.creditList}>

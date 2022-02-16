@@ -26,8 +26,6 @@ const FilmsList = () => {
     const categories = useSelector((state: ActionTypeInterface) => state.pageCounter.categories)
     const sortType = useSelector((state: ActionTypeInterface) => state.sortType.type)
 
-    console.log(filmArr)
-
     useEffect(() => {
         getFilmlist(categories, pageCounter)
             .then(res => {
