@@ -5,7 +5,7 @@ import styles from './movieCredits.module.scss'
 import cx from 'classnames'
 
 
-const MoviCredits = ({ id }: { id: number }) => {
+const MovieCredits = ({ id }: { id: number }) => {
     const [credits, setCredits] = useState<CreditInterface[]>([])
 
     useEffect(() => {
@@ -22,4 +22,4 @@ const MoviCredits = ({ id }: { id: number }) => {
         </div>)
 }
 
-export default MoviCredits
+export default MovieCredits

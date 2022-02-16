@@ -10,8 +10,7 @@ const MovieTrailers = ({ id }: { id: number }) => {
         if (id) getFilmVideo(id).then(res => setKeys([res.results[0].key, res.results[1].key]))
     }, [id])
 
-
-    return (<div className={styles.treiler}>
+    return (<div className={styles.trailer}>
         {keys.length > 0 ? keys.map((el) => (<div key={el}>
             <ReactPlayer
                 className={styles.player}
@@ -20,7 +19,7 @@ const MovieTrailers = ({ id }: { id: number }) => {
                 width={'100%'}
                 height={506}
             />
-        </div>)) : 'No treiler'}
+        </div>)) : 'No trailer'}
     </div>)
 }
 

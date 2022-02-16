@@ -1,0 +1,62 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FilmsFilter Component FilmsFilter snapshot test 1`] = `
+<div
+  className="filmFilter"
+>
+  <div
+    className="filmFilter__filter"
+  >
+    <button
+      className="filmFilter__filter__btns activeCategories"
+      onClick={[Function]}
+    >
+      Trending
+    </button>
+    <button
+      className="filmFilter__filter__btns"
+      onClick={[Function]}
+    >
+      Top Rated
+    </button>
+    <button
+      className="filmFilter__filter__btns"
+      onClick={[Function]}
+    >
+      Coming Soon
+    </button>
+  </div>
+  <div
+    className="filmFilter__arrange"
+  >
+    <button
+      className="filmFilter__arrange__row activeSort"
+      onClick={[Function]}
+    >
+      <div
+        className="filmFilter__arrange__row__el"
+      />
+      <div
+        className="filmFilter__arrange__row__el"
+      />
+      <div
+        className="filmFilter__arrange__row__el"
+      />
+      <div
+        className="filmFilter__arrange__row__el"
+      />
+    </button>
+    <button
+      className="filmFilter__arrange__oneColumn"
+      onClick={[Function]}
+    >
+      <div
+        className="filmFilter__arrange__oneColumn__el"
+      />
+      <div
+        className="filmFilter__arrange__oneColumn__el"
+      />
+    </button>
+  </div>
+</div>
+`;

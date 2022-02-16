@@ -7,7 +7,7 @@ import {
 import GeneralPage from '../components/generalPage/GeneralPage'
 import Header from '../components/header/Header'
 import Footer from '../components/footer/Footer'
-import DetalsPage from '../components/detailsPage/DetailsPage'
+import DetailsPage from '../components/detailsPage/DetailsPage'
 import Video from '../components/video/Video'
 import { useSelector } from 'react-redux'
 import { ActionTypeInterface } from '../global'
@@ -22,7 +22,7 @@ const RoutePages = () => {
             <Routes>
                 <Route path='/search' element={<SearchPage />} />
                 <Route path='/' element={<GeneralPage />} />
-                <Route path='/movie/:id' element={<DetalsPage />} />
+                <Route path='/movie/:id' element={<DetailsPage />} />
             </Routes>
             <Footer />
         </Router>

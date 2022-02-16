@@ -1,0 +1,116 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App Component App snapshot test 1`] = `
+Array [
+  <header>
+    <a
+      href="/"
+      onClick={[Function]}
+    >
+      <h1>
+        FILMS
+      </h1>
+    </a>
+    <form
+      className="search"
+      onSubmit={[Function]}
+    >
+      <input
+        onChange={[Function]}
+        value=""
+      />
+      <button>
+        <img
+          alt="magnifying glass"
+          src="test-file-stub"
+        />
+      </button>
+    </form>
+  </header>,
+  "",
+  <img
+    className="spinner"
+    src="test-file-stub"
+  />,
+  <main
+    className="main"
+  >
+    <div
+      className="filmFilter"
+    >
+      <div
+        className="filmFilter__filter"
+      >
+        <button
+          className="filmFilter__filter__btns activeCategories"
+          onClick={[Function]}
+        >
+          Trending
+        </button>
+        <button
+          className="filmFilter__filter__btns"
+          onClick={[Function]}
+        >
+          Top Rated
+        </button>
+        <button
+          className="filmFilter__filter__btns"
+          onClick={[Function]}
+        >
+          Coming Soon
+        </button>
+      </div>
+      <div
+        className="filmFilter__arrange"
+      >
+        <button
+          className="filmFilter__arrange__row activeSort"
+          onClick={[Function]}
+        >
+          <div
+            className="filmFilter__arrange__row__el"
+          />
+          <div
+            className="filmFilter__arrange__row__el"
+          />
+          <div
+            className="filmFilter__arrange__row__el"
+          />
+          <div
+            className="filmFilter__arrange__row__el"
+          />
+        </button>
+        <button
+          className="filmFilter__arrange__oneColumn"
+          onClick={[Function]}
+        >
+          <div
+            className="filmFilter__arrange__oneColumn__el"
+          />
+          <div
+            className="filmFilter__arrange__oneColumn__el"
+          />
+        </button>
+      </div>
+    </div>
+    <img
+      className="spinner"
+      src="test-file-stub"
+    />
+  </main>,
+  <footer
+    className="footer"
+  >
+    <div
+      className="footer__name"
+    >
+      FILMS
+    </div>
+    <div
+      className="footer__info"
+    >
+      Copyrigth © 2021 FILMS. HRANT GRISHYAN
+    </div>
+  </footer>,
+]
+`;

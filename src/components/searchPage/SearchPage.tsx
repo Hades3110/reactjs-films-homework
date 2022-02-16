@@ -1,10 +1,9 @@
-import Searchresults from './searchPaheFilmList/SearchResults'
+import SearchResults from './searchPaheFilmList/SearchResults'
 
 const SearchPage = () => (
     <>
-        <Searchresults />
+        <SearchResults />
     </>
 )
-
 
 export default SearchPage

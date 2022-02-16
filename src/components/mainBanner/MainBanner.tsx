@@ -3,7 +3,6 @@ import { FilmInfoInterface, GenreInterface, getHeadFilm } from '../../services/f
 import StarRatings from 'react-star-ratings'
 import styles from './mainBanner.module.scss'
 import { useDispatch, useSelector } from 'react-redux'
-import { changeVideoWindow } from '../../redux/filmVideoPlay/action'
 import spinner from '/public/assets/spinner.gif'
 
 const initialState: FilmInfoInterface = {

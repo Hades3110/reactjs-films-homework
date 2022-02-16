@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FilmItem Component FilmItem snapshot test 1`] = `
+<div
+  className="filmItem row"
+  onClick={[Function]}
+>
+  <div
+    className="filmImage"
+    style={
+      Object {
+        "backgroundImage": "url(test-file-stub)",
+      }
+    }
+  >
+    <div
+      className="filmImage__hover"
+    >
+      <img
+        alt="Icon Play"
+        className="filmImage__hover__icon"
+        onClick={[Function]}
+        src="test-file-stub"
+      />
+      <button
+        className="filmImage__hover__button"
+        onClick={[Function]}
+      >
+        View Info
+      </button>
+    </div>
+  </div>
+  <div
+    className="filmItem__title filmTitle"
+  >
+    <span
+      className="filmItem__title__name filmName"
+    >
+      
+    </span>
+    <span
+      className="filmItem__title__rating filmRating"
+    >
+      0
+    </span>
+    <div
+      className="filmItem__title__genres filmGenre"
+    />
+  </div>
+</div>
+`;

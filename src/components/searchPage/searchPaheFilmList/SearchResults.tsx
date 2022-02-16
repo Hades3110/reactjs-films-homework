@@ -10,7 +10,7 @@ import spinner from '/public/assets/spinner.gif'
 import { useLocation } from 'react-router'
 import styles from './searchResults.module.scss'
 
-const Searchresults = () => {
+const SearchResults = () => {
 
     const [filmArr, setFilmArr] = useState<FilmInterface[]>([])
     const [genres, setGenres] = useState<GenreInterface[]>([])
@@ -74,4 +74,4 @@ const Searchresults = () => {
     )
 }
 
-export default Searchresults
+export default SearchResults
