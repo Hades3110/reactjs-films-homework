@@ -8,5 +8,4 @@ const rootReducer = combineReducers({
     sortType: filmListSortReducer,
     videoPlayer: videoPlayReducer
 })
-
 export default rootReducer

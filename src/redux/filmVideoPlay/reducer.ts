@@ -1,6 +1,6 @@
 import { VIDEO_PLAY } from './action'
 
-const initialState = {
+export const initialState = {
     watch: false,
     id: 0
 }

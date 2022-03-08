@@ -68,6 +68,7 @@ Array [
       </div>
     </div>
     <img
+      alt="spinner"
       className="spinner"
       src="test-file-stub"
     />

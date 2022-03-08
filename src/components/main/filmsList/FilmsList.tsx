@@ -20,7 +20,6 @@ const FilmsList = () => {
     const [genres, setGenres] = useState<GenreInterface[]>([])
     const [isLoaded, setIsLoaded] = useState<boolean>(false)
     const [newItemLoading, setNewItemLoading] = useState<boolean>(false)
-
     const dispatch = useDispatch()
     const pageCounter = useSelector((state: ActionTypeInterface) => state.pageCounter.count)
     const categories = useSelector((state: ActionTypeInterface) => state.pageCounter.categories)
@@ -29,21 +28,15 @@ const FilmsList = () => {
     useEffect(() => {
         getFilmlist(categories, pageCounter)
             .then(res => {
-                let result = []
-                if (pageCounter > 1) {
-                    result = [...filmArr, ...res.results].filter((film, index, self) =>
-                        self.findIndex((t) => (
-                            t.id === film.id
-                        ))
-                    )
-                    setNewItemLoading(false)
-                } else {
-                    result = res.results.filter((film, index, self) =>
-                        self.findIndex((t) => (
-                            t.id === film.id
-                        ))
-                    )
-                }
+                let result = pageCounter > 1 ? [...filmArr, ...res.results].filter((film, index, self) =>
+                  self.findIndex((t) => (
+                    t.id === film.id
+                  ))
+                ): res.results.filter((film, index, self) =>
+                  self.findIndex((t) => (
+                    t.id === film.id
+                  ))
+                )
                 result.length -= result.length % 5
                 setFilmArr(result.filter(film => film.poster_path && film.title))
                 setIsLoaded(true)
@@ -56,7 +49,7 @@ const FilmsList = () => {
 
     return (
         <>
-            {isLoaded ? (filmArr.length === 0 ? <div className='errorMassage'><img src={errorMassage} /></div> :
+            {isLoaded ? (filmArr.length === 0 ? <div className='errorMassage'><img src={errorMassage} alt="error massage"/></div> :
                 <>
                     <div className={sortType ? 'filmListRow' : 'filmListColumn'}>
                         {
@@ -84,7 +77,7 @@ const FilmsList = () => {
                         }}>
                         <button className='btn__more' disabled={newItemLoading}>{newItemLoading ? '...' : 'Load More'}</button>
                     </div>
-                </>) : <img src={spinner} className='spinner' />
+                </>) : <img src={spinner} className='spinner' alt="spinner"/>
             }
         </>
     )

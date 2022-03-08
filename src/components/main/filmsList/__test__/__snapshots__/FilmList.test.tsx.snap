@@ -2,6 +2,7 @@
 
 exports[`FilmsList Component FilmsList snapshot test 1`] = `
 <img
+  alt="spinner"
   className="spinner"
   src="test-file-stub"
 />

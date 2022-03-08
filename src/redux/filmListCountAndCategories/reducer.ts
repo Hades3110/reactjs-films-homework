@@ -1,6 +1,6 @@
 import { FILM_LIST_CATEGORIES_AND_PAGE_COUNT } from './action'
 
-const initialState = {
+export const initialState = {
     count: 1,
     categories: 'popular'
 }

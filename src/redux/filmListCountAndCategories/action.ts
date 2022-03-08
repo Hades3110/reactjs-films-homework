@@ -6,4 +6,3 @@ export const changeFilmCategoriesAndCount = (count: number, categories: string) 
         payload: { count: count, categories: categories }
     }
 }
-
