@@ -29,17 +29,18 @@ const FilmsList = () => {
         getFilmlist(categories, pageCounter)
             .then(res => {
                 let result = pageCounter > 1 ? [...filmArr, ...res.results].filter((film, index, self) =>
-                  self.findIndex((t) => (
-                    t.id === film.id
-                  ))
-                ): res.results.filter((film, index, self) =>
-                  self.findIndex((t) => (
-                    t.id === film.id
-                  ))
+                    self.findIndex((t) => (
+                        t.id === film.id && index !== 0
+                    ))
+                ) : res.results.filter((film, index, self) =>
+                    self.findIndex((t) => (
+                        t.id === film.id
+                    ))
                 )
                 result.length -= result.length % 5
                 setFilmArr(result.filter(film => film.poster_path && film.title))
                 setIsLoaded(true)
+                setNewItemLoading(false)
             })
     }, [categories, pageCounter])
     useEffect(() => {
@@ -49,7 +50,7 @@ const FilmsList = () => {
 
     return (
         <>
-            {isLoaded ? (filmArr.length === 0 ? <div className='errorMassage'><img src={errorMassage} alt="error massage"/></div> :
+            {isLoaded ? (filmArr.length === 0 ? <div className='errorMassage'><img src={errorMassage} alt="error massage" /></div> :
                 <>
                     <div className={sortType ? 'filmListRow' : 'filmListColumn'}>
                         {
@@ -77,7 +78,7 @@ const FilmsList = () => {
                         }}>
                         <button className='btn__more' disabled={newItemLoading}>{newItemLoading ? '...' : 'Load More'}</button>
                     </div>
-                </>) : <img src={spinner} className='spinner' alt="spinner"/>
+                </>) : <img src={spinner} className='spinner' alt="spinner" />
             }
         </>
     )

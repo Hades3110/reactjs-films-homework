@@ -3,6 +3,7 @@ import {
     BrowserRouter as Router,
     Route,
     Routes,
+    Navigate
 } from 'react-router-dom'
 import GeneralPage from '../components/generalPage/GeneralPage'
 import Header from '../components/header/Header'
@@ -23,6 +24,7 @@ const RoutePages = () => {
                 <Route path='/search' element={<SearchPage />} />
                 <Route path='/reactjs-films-homework' element={<GeneralPage />} />
                 <Route path='/movie/:id' element={<DetailsPage />} />
+                <Route path='/' element={<Navigate replace to="/reactjs-films-homework" />} />
             </Routes>
             <Footer />
         </Router>
