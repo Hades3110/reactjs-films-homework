@@ -2,12 +2,15 @@
   "name": "reactjs-film",
   "version": "1.0.0",
   "description": "",
+  "homepage": "https://gitname.github.io/react-gh-pages",
   "main": "index.js",
   "scripts": {
     "start": "webpack serve --config webpack.config.js --env env=dev --open",
     "build": "webpack --config webpack.config.js --env env=prod",
     "lint": "eslint --ext .ts,.tsx src --fix",
-    "test": "jest"
+    "test": "jest",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "keywords": [],
   "author": "",
@@ -52,6 +55,7 @@
     "eslint-plugin-react": "^7.27.1",
     "eslint-plugin-react-hooks": "^4.3.0",
     "file-loader": "^6.2.0",
+    "gh-pages": "^4.0.0",
     "html-webpack-plugin": "^5.5.0",
     "husky": "^7.0.4",
     "identity-obj-proxy": "^3.0.0",
