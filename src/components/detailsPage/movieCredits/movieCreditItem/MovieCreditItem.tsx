@@ -1,9 +1,9 @@
 import { CreditInterface } from '../../../../services/filmService'
-import imageNorFound from '/public/assets/imageNotFound.png'
+// import imageNorFound from '/public/assets/imageNotFound.png'
 import styles from './movieCreditItem.module.scss'
 
 const MovieCreditsItem = ({ character, gender, name, profile_path }: CreditInterface) => {
-    const imageUrl = profile_path ? `https://image.tmdb.org/t/p/original/${profile_path}` : imageNorFound
+    const imageUrl = profile_path ? `https://image.tmdb.org/t/p/original/${profile_path}` : "https://i.ibb.co/wB4hZKX/image-Not-Found.png"
     const sex = gender === 1 ? "Women" : 'Men'
 
     return (<div className={styles.card}>

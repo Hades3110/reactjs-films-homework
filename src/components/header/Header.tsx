@@ -1,6 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom'
 import styles from './header.module.scss'
-import imgSearch from '/public/assets/search.png'
+// import imgSearch from '/public/assets/search.png'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { changeVideoWindow } from '../../redux/filmVideoPlay/action'
@@ -23,7 +23,7 @@ const Header = () => {
                 onChange={(e) => setValue(e.target.value)}
                 value={value}
             />
-            <button><img src={imgSearch} alt='magnifying glass' /></button>
+            <button><img src="https://i.ibb.co/HXm67sq/search.png" alt='magnifying glass' /></button>
         </form>
     </header>
 }

@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react'
 import { FilmInfoInterface, GenreInterface, getHeadFilm } from '../../services/filmService'
 import StarRatings from 'react-star-ratings'
 import styles from './mainBanner.module.scss'
-import { useDispatch, useSelector } from 'react-redux'
-import spinner from '/public/assets/spinner.gif'
+import { useDispatch } from 'react-redux'
+// import spinner from '/public/assets/spinner.gif'
 
 const initialState: FilmInfoInterface = {
     id: 0,
@@ -75,7 +75,7 @@ const MainBanner = ({ id }: { id: number }) => {
                     </div>
                 </div>
             </div>
-        </div> : <img src={spinner} className={styles.spinner} />}
+        </div> : <img src="https://i.ibb.co/YR4Nw2x/spinner.gif" className={styles.spinner} />}
     </>)
 }
 

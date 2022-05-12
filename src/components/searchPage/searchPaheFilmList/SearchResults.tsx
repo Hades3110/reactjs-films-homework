@@ -6,7 +6,7 @@ import {
     GenreInterface,
     getSearchResult
 } from '../../../services/filmService'
-import spinner from '/public/assets/spinner.gif'
+// import spinner from '/public/assets/spinner.gif'
 import { useLocation } from 'react-router'
 import styles from './searchResults.module.scss'
 
@@ -68,7 +68,7 @@ const SearchResults = () => {
                         }
                     </div>
                 </div>
-            ) : <img src={spinner} className={styles.spinner} />
+            ) : <img src="https://i.ibb.co/YR4Nw2x/spinner.gif" className={styles.spinner} />
             }
         </>
     )

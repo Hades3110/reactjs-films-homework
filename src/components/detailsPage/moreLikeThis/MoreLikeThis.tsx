@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { FilmInterface, GenreInterface, getGenres, getRecommendations } from '../../../services/filmService'
 import FilmItem from '../../main/filmsList/filmItem/FilmItem'
 import styles from './moreLikeThis.module.scss'
-import spinner from '/public/assets/spinner.gif'
+// import spinner from '/public/assets/spinner.gif'
 
 const MoreLikeThis = ({ id }: { id: number }) => {
     const [filmArr, setFilmArr] = useState<FilmInterface[]>([])
@@ -60,7 +60,7 @@ const MoreLikeThis = ({ id }: { id: number }) => {
                     }
                 </div>
             </div> : '')
-            : <img src={spinner} className={styles.spinner} />
+            : <img src="https://i.ibb.co/YR4Nw2x/spinner.gif" className={styles.spinner} />
         }
     </>)
 }

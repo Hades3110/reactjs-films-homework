@@ -9,8 +9,8 @@ import {
     getGenres,
     GenreInterface,
 } from '../../../services/filmService'
-import spinner from '/public/assets/spinner.gif'
-import errorMassage from '/public/assets/error.gif'
+// import spinner from '/public/assets/spinner.gif'
+// import errorMassage from '/public/assets/error.gif'
 import './filmList.scss'
 
 
@@ -50,7 +50,7 @@ const FilmsList = () => {
 
     return (
         <>
-            {isLoaded ? (filmArr.length === 0 ? <div className='errorMassage'><img src={errorMassage} alt="error massage" /></div> :
+            {isLoaded ? (filmArr.length === 0 ? <div className='errorMassage'><img src="errorMassage" alt="error massage" /></div> :
                 <>
                     <div className={sortType ? 'filmListRow' : 'filmListColumn'}>
                         {
@@ -78,7 +78,7 @@ const FilmsList = () => {
                         }}>
                         <button className='btn__more' disabled={newItemLoading}>{newItemLoading ? '...' : 'Load More'}</button>
                     </div>
-                </>) : <img src={spinner} className='spinner' alt="spinner" />
+                </>) : <img src="https://i.ibb.co/YR4Nw2x/spinner.gif" className='spinner' alt="spinner" />
             }
         </>
     )

@@ -1,6 +1,6 @@
 import { FilmPropertyInterface } from './types'
 import { GenreInterface } from '../../../../services/filmService'
-import imageNorFound from '/public/assets/imageNotFound.png'
+// import imageNorFound from '/public/assets/imageNotFound.png'
 import iconPlay from '/public/assets/icon_play.png'
 import cx from 'classnames'
 import styles from './filmItem.module.scss'
@@ -17,7 +17,7 @@ const FilmItem = ({ id, title, image, rate, overview, filmGenres, sortType = tru
         return filmGenres.find((id: number) => id === el.id)
     })
     const dispatch = useDispatch()
-    const imageUrl = image ? `https://image.tmdb.org/t/p/original/${image}` : imageNorFound
+    const imageUrl = image ? `https://image.tmdb.org/t/p/original/${image}` : "https://i.ibb.co/wB4hZKX/image-Not-Found.png"
     const vote = rate ? +(rate / 2).toFixed(1) : 0
 
     const navigate = useNavigate()
