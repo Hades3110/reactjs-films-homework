@@ -1,7 +1,8 @@
 import { FilmPropertyInterface } from './types'
 import { GenreInterface } from '../../../../services/filmService'
 // import imageNorFound from '/public/assets/imageNotFound.png'
-import iconPlay from '/public/assets/icon_play.png'
+// import iconPlay from '/public/assets/icon_play.png'
+
 import cx from 'classnames'
 import styles from './filmItem.module.scss'
 import { useDispatch } from 'react-redux'
@@ -35,7 +36,7 @@ const FilmItem = ({ id, title, image, rate, overview, filmGenres, sortType = tru
                 </div> :
                     <div className={styles.filmImage__hover}>
                         <img
-                            src={iconPlay}
+                            src="https://i.ibb.co/mGBHdSW/icon-play.png"
                             alt="Icon Play"
                             className={styles.filmImage__hover__icon}
                             onClick={(event) => {
