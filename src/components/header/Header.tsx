@@ -12,7 +12,7 @@ const Header = () => {
     const dispatch = useDispatch()
 
     return <header>
-        <Link to='/films' onClick={() => {
+        <Link to='/reactjs-films-homework' onClick={() => {
             setValue('')
         }}><h1>FILMS</h1></Link>
         <form className={styles.search} onSubmit={(e) => (

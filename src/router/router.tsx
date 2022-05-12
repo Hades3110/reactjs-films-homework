@@ -21,7 +21,7 @@ const RoutePages = () => {
             {watch ? <Video /> : ''}
             <Routes>
                 <Route path='/search' element={<SearchPage />} />
-                <Route path='/films' element={<GeneralPage />} />
+                <Route path='/reactjs-films-homework' element={<GeneralPage />} />
                 <Route path='/movie/:id' element={<DetailsPage />} />
             </Routes>
             <Footer />
